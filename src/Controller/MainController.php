@@ -16,6 +16,6 @@ class MainController extends AbstractController
 	 */
 	public function index(): Response
 	{
-		return new Response('<html><body>Hokus...</body></html>');
+		return $this->render('base.html.twig');
 	}
 }
