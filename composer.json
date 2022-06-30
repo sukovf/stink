@@ -1,25 +1,26 @@
 {
     "type": "project",
-    "license": "proprietary",
+    "license": "MIT",
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
         "php": ">=8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "doctrine/annotations": "^1.13",
+        "doctrine/annotations": "1.13.2",
+        "doctrine/dbal": "3.2",
+        "doctrine/orm": "2.11.0",
         "symfony/asset": "6.1.*",
-        "symfony/console": "*",
-        "symfony/dotenv": "*",
+        "symfony/cache": "6.1.*",
+        "symfony/console": "6.1.*",
+        "symfony/dotenv": "6.1.*",
         "symfony/flex": "^2",
         "symfony/form": "6.1.*",
-        "symfony/framework-bundle": "*",
-        "symfony/runtime": "*",
-        "symfony/yaml": "*"
-    },
-    "require-dev": {
-        "symfony/stopwatch": "6.1.*",
-        "symfony/web-profiler-bundle": "6.1.*"
+        "symfony/framework-bundle": "6.1.*",
+        "symfony/runtime": "6.1.*",
+        "symfony/twig-bundle": "6.1.*",
+        "symfony/web-profiler-bundle": "6.1.*",
+        "symfony/yaml": "6.1.*"
     },
     "config": {
         "allow-plugins": {
@@ -48,10 +49,8 @@
         "symfony/polyfill-php81": "*"
     },
     "scripts": {
-        "auto-scripts": {
-            "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
-        },
+        "auto-scripts": [
+        ],
         "post-install-cmd": [
             "@auto-scripts"
         ],
