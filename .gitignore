@@ -1,11 +1,14 @@
-
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /.idea/
+/node_modules/
 /public/bundles/
+/public/css/
+/public/js/
+/public/mix-manifest.json
 /var/
 /vendor/
 ###< symfony/framework-bundle ###

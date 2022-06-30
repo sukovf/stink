@@ -1,0 +1,11 @@
+.body {
+	width: 100%;
+	position: fixed;
+	bottom: -0.5rem;
+}
+
+@media only screen and (min-width: 576px) {
+	.body {
+		width: 500px;
+	}
+}
