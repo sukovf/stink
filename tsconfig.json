@@ -6,7 +6,8 @@
 		"preserveConstEnums": true,
 		"sourceMap": true,
 		"moduleResolution": "Node",
-		"allowSyntheticDefaultImports": true
+		"allowSyntheticDefaultImports": true,
+		"allowJs": true
 	},
 	"include": [
 		"assets/ts/StinkMap/index.ts",

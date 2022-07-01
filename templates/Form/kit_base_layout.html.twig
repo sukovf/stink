@@ -1,4 +1,4 @@
-{% use "form_div_layout.html.twig" %}
+{% use "Form/form_div_layout.html.twig" %}
 
 {# Widgets #}
 
@@ -189,8 +189,15 @@
 
 {% block choice_row -%}
 	{%- set force_error = true -%}
+	{%- set disable_outline = true -%}
 	{{- block('form_row') -}}
 {%- endblock choice_row %}
+
+{% block entity_row -%}
+	{%- set force_error = true -%}
+	{%- set disable_outline = true -%}
+	{{- block('form_row') -}}
+{%- endblock entity_row %}
 
 {% block date_row -%}
 	{%- set force_error = true -%}

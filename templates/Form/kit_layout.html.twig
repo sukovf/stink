@@ -1,4 +1,4 @@
-{% use "bootstrap_base_layout.html.twig" %}
+{% use "Form/kit_base_layout.html.twig" %}
 
 {# Widgets #}
 
@@ -236,7 +236,7 @@
 {%- endblock radio_widget %}
 
 {%- block choice_widget_collapsed -%}
-	{%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-select')|trim}) -%}
+	{%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-select select')|trim}) -%}
 	{{- parent() -}}
 {%- endblock choice_widget_collapsed -%}
 
@@ -266,7 +266,7 @@
 			{%- set row_class = row_class|default(row_attr.class|default('')) -%}
 			{%- set label_attr = label_attr|merge({for: id}) -%}
 			{%- if 'col-form-label' not in parent_label_class -%}
-				{%- set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ('input-group' in row_class ? ' input-group-text' : ' form-label') )|trim}) -%}
+				{%- set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ('input-group' in row_class ? ' input-group-text' : ' form-label select-label') )|trim}) -%}
 			{%- endif -%}
 		{%- endif -%}
 	{%- endif -%}
@@ -328,7 +328,7 @@
 	{%- if help is not empty -%}
 		{%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
 	{%- endif -%}
-	{%- set row_class = row_class|default(row_attr.class|default('mb-3 form-outline')|trim) -%}
+	{%- set row_class = row_class|default(row_attr.class|default('mb-3' ~ (disable_outline is defined ? '' : ' form-outline'))|trim) -%}
 	<{{ element|default('div') }}{% with {attr: row_attr|merge({class: row_class})} %}{{ block('attributes') }}{% endwith %}>
 	{%- if 'form-floating' in row_class -%}
 		{{- form_widget(form, widget_attr) -}}
@@ -338,8 +338,8 @@
 		{{- form_label(form) -}}
 	{%- endif -%}
 	{{- form_help(form) -}}
-	{{- form_errors(form) -}}
 	</{{ element|default('div') }}>
+	{{- form_errors(form) -}}
 {%- endblock form_row %}
 
 {%- block button_row -%}

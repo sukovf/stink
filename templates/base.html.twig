@@ -1,67 +1,101 @@
 <!DOCTYPE html>
 <html lang="cs">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>{% block title %}Welcome!{% endblock %}</title>
 
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}
-            {{ mapbox(map) }}
+		{% block stylesheets %}
+			<link rel="stylesheet" href="{{ asset('/css/app.css') }}">
+		{% endblock %}
+	</head>
+	<body>
+		{% block body %}
+			{{ mapbox(map) }}
 
-            <section class="w-100 justify-content-center d-flex">
-                <div class="body card">
-                    {# default card #}
-                    <div class="card-body d-none" id="body-default">
-                        <div class="row text-nowrap flex-nowrap">
-                            <div class="col-6 text-start">
-                                <button type="button" class="btn btn-danger btn-lg">New report</button>
-                            </div>
-                            <div class="col-6 text-end">
-                                <div class="btn-group dropup">
-                                    <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-mdb-toggle="dropdown">Reports&nbsp;&nbsp;</button>
+			{{ form_start(reportForm, {'attr': {'novalidate': 'novalidate'}}) }}
 
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Heatmap</a></li>
-                                        <li><a class="dropdown-item" href="#">Spreadsheet</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {# /default card/ #}
+			<section class="w-100 justify-content-center d-flex">
+				<div class="body card">
+					{# default card #}
+					<div class="card-body" id="body-default">
+						<div class="row">
+							<div class="col-12">
+								<button type="button" id="button-new-report" class="btn btn-danger btn-lg float-start">New report</button>
 
-                    {# severity select #}
-                    <div class="card-body" id="body-severity">
-                        <div class="row flex-nowrap">
-                            <div class="col-12">
-                                <h4>Severity</h4>
-                            </div>
-                        </div>
-                    </div>
-                    {# /severity select/ #}
+								<div class="btn-group dropup float-end">
+									<button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-mdb-toggle="dropdown">Reports&nbsp;&nbsp;</button>
 
-                    {# report form #}
-                    <div class="card-body d-none" id="body-report-form">
-                        <div class="row text-nowrap flex-nowrap">
-                            <div class="col-12">
-                                {{ form(reportForm) }}
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Heatmap</a></li>
+										<li><a class="dropdown-item" href="#">Spreadsheet</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					{# /default card/ #}
 
-                                <button type="button" class="btn btn-danger btn-lg">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                    {# /report form/ #}
-                </div>
-            </section>
-        {% endblock %}
+					{# severity select #}
+					<div class="card-body" id="body-severity">
+						<div class="row flex-nowrap">
+							<div class="col-12">
+								<h4 class="mb-4">Severity</h4>
 
-        {% block javascripts %}
-            <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
-        {% endblock %}
-    </body>
+								{% for severity in severities %}
+									<div class="row mb-3">
+										<button type="button" class="btn btn-lg severity" data-id="{{ severity.id }}" data-color="{{ severity.color }}">{{ severity.label }} ({{ severity.id - 1 }})</button>
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+					{# /severity select/ #}
+
+					{# report form #}
+					<div class="card-body" id="body-report-form">
+						<div class="row text-nowrap flex-nowrap">
+							<div class="col-12">
+								<h4 class="mb-4">Details</h4>
+
+								{{ form_row(reportForm.severity) }}
+								{{ form_row(reportForm.reporterName) }}
+								{{ form_row(reportForm.reporterSurname) }}
+								{{ form_row(reportForm.reporterEmail) }}
+								{{ form_row(reportForm.comment) }}
+
+								<button type="button" class="btn btn-danger btn-lg" id="button-pick-location">Pick location</button>
+							</div>
+						</div>
+					</div>
+					{# /report form/ #}
+
+					{# location form #}
+					<div class="card-body" id="body-location">
+						<div class="row text-nowrap flex-nowrap">
+							<div class="col-12">
+								<h4 class="mb-4">Location</h4>
+
+								{{ form_row(reportForm.long) }}
+								{{ form_row(reportForm.lat) }}
+
+								<button type="submit" class="btn btn-danger btn-lg float-start">Report</button>
+								<button type="button" class="btn btn-primary btn-lg float-end" id="button-find-location">
+									<span class="spinner-border spinner-border-sm d-none" role="status"></span>
+									Find my location
+								</button>
+							</div>
+						</div>
+					</div>
+					{# /location form/ #}
+				</div>
+			</section>
+
+			{{ form_end(reportForm) }}
+		{% endblock %}
+
+		{% block javascripts %}
+			<script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
+		{% endblock %}
+	</body>
 </html>

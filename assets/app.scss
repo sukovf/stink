@@ -1,5 +1,9 @@
+@import "scss/variables";
 @import "scss/main";
 @import "~mdb-ui-kit/css/mdb.min.css";
+@import "scss/components/select";
+@import "scss/components/datepicker";
 @import "scss/map";
 @import "scss/body";
 @import "scss/form";
+@import "scss/severity";
