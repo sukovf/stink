@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use DateTime;
-use Doctrine\DBAL\Types\DateType;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -24,21 +23,19 @@ class Report
 	/**
 	 * @var Severity
 	 * @ORM\ManyToOne(targetEntity="Severity")
-	 * @ORM\JoinColumn(name="severity_id", referencedColumnName="id")
+	 * @ORM\JoinColumn(name="severity_id", referencedColumnName="id", nullable=false)
 	 */
 	private Severity $severity;
 
 	/**
 	 * @var string
 	 * @ORM\Column(type="string", nullable=false)
-	 * @Assert\NotBlank()
 	 */
 	private string $reporterName;
 
 	/**
 	 * @var string
 	 * @ORM\Column(type="string", nullable=false)
-	 * @Assert\NotBlank()
 	 */
 	private string $reporterSurname;
 
@@ -46,21 +43,26 @@ class Report
 	 * @var string
 	 * @ORM\Column(type="string", nullable=false)
 	 * @Assert\Email()
-	 * @Assert\NotBlank()
 	 */
 	private string $reporterEmail;
 
 	/**
-	 * @var float
-	 * @ORM\Column(type="float", nullable=false)
+	 * @var string|null
+	 * @ORM\Column(type="string", length=2048, nullable=true)
 	 */
-	private float $long = 0.0;
+	private ?string $comment;
 
 	/**
 	 * @var float
 	 * @ORM\Column(type="float", nullable=false)
 	 */
-	private float $lat = 0.0;
+	private float $longitude = 0.0;
+
+	/**
+	 * @var float
+	 * @ORM\Column(type="float", nullable=false)
+	 */
+	private float $latitude = 0.0;
 
 	/**
 	 * @var DateTime
@@ -69,10 +71,12 @@ class Report
 	private DateTime $created;
 
 	/**
-	 * @var string
-	 * @ORM\Column(type="string")
+	 *
 	 */
-	private string $comment;
+	public function __construct()
+	{
+		$this->created = new DateTime();
+	}
 
 	/**
 	 * @return int
@@ -157,33 +161,33 @@ class Report
 	/**
 	 * @return float
 	 */
-	public function getLong(): float
+	public function getLongitude(): float
 	{
-		return $this->long;
+		return $this->longitude;
 	}
 
 	/**
-	 * @param float $long
+	 * @param float $longitude
 	 */
-	public function setLong(float $long): void
+	public function setLongitude(float $longitude): void
 	{
-		$this->long = $long;
+		$this->longitude = $longitude;
 	}
 
 	/**
 	 * @return float
 	 */
-	public function getLat(): float
+	public function getLatitude(): float
 	{
-		return $this->lat;
+		return $this->latitude;
 	}
 
 	/**
-	 * @param float $lat
+	 * @param float $latitude
 	 */
-	public function setLat(float $lat): void
+	public function setLatitude(float $latitude): void
 	{
-		$this->lat = $lat;
+		$this->latitude = $latitude;
 	}
 
 	/**
@@ -203,17 +207,17 @@ class Report
 	}
 
 	/**
-	 * @return string
+	 * @return string|null
 	 */
-	public function getComment(): string
+	public function getComment(): ?string
 	{
 		return $this->comment;
 	}
 
 	/**
-	 * @param string $comment
+	 * @param string|null $comment
 	 */
-	public function setComment(string $comment): void
+	public function setComment(?string $comment): void
 	{
 		$this->comment = $comment;
 	}

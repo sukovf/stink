@@ -11,6 +11,16 @@
 	</head>
 	<body>
 		{% block body %}
+			{% for label, messages in app.flashes %}
+				{% for message in messages %}
+					<div class="alert alert-dismissible alert-{{ label }} mx-5 my-3" role="alert" data-color="{{ label }}">
+						<i class="fas {% if label is same as 'success' %}fa-check-circle{% elseif label is same as 'danger' %}fa-times-circle{% endif%} mr-1"></i>
+						{{ message }}
+						<button type="button" class="btn-close" data-dismiss="alert"></button>
+					</div>
+				{% endfor %}
+			{% endfor %}
+
 			{{ mapbox(map) }}
 
 			{{ form_start(reportForm, {'attr': {'novalidate': 'novalidate'}}) }}
@@ -21,16 +31,8 @@
 					<div class="card-body" id="body-default">
 						<div class="row">
 							<div class="col-12">
-								<button type="button" id="button-new-report" class="btn btn-danger btn-lg float-start">New report</button>
-
-								<div class="btn-group dropup float-end">
-									<button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-mdb-toggle="dropdown">Reports&nbsp;&nbsp;</button>
-
-									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="#">Heatmap</a></li>
-										<li><a class="dropdown-item" href="#">Spreadsheet</a></li>
-									</ul>
-								</div>
+								<button type="button" id="button-new-report" class="btn btn-danger btn-lg float-left">New report</button>
+								<button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#reportsDownloadModal">Reports</button>
 							</div>
 						</div>
 					</div>
@@ -40,10 +42,14 @@
 					<div class="card-body" id="body-severity">
 						<div class="row flex-nowrap">
 							<div class="col-12">
-								<h4 class="mb-4">Severity</h4>
+								<div class="justify-content-between d-flex">
+									<button type="button" class="btn-back disabled"></button>
+									<h4 class="mb-4">Severity</h4>
+									<button type="button" class="btn-close body-close"></button>
+								</div>
 
 								{% for severity in severities %}
-									<div class="row mb-3">
+									<div class="row mb-3 mx-0">
 										<button type="button" class="btn btn-lg severity" data-id="{{ severity.id }}" data-color="{{ severity.color }}">{{ severity.label }} ({{ severity.id - 1 }})</button>
 									</div>
 								{% endfor %}
@@ -53,10 +59,14 @@
 					{# /severity select/ #}
 
 					{# report form #}
-					<div class="card-body" id="body-report-form">
+					<div class="card-body" id="body-report-form" {% if shouldFirstFormBeVisible %}data-is-visible="true"{% endif %}>
 						<div class="row text-nowrap flex-nowrap">
 							<div class="col-12">
-								<h4 class="mb-4">Details</h4>
+								<div class="justify-content-between d-flex">
+									<button type="button" class="btn-back body-back"></button>
+									<h4 class="mb-4">Details</h4>
+									<button type="button" class="btn-close body-close"></button>
+								</div>
 
 								{{ form_row(reportForm.severity) }}
 								{{ form_row(reportForm.reporterName) }}
@@ -71,16 +81,20 @@
 					{# /report form/ #}
 
 					{# location form #}
-					<div class="card-body" id="body-location">
+					<div class="card-body" id="body-location" {% if shouldSecondFormBeVisible %}data-is-visible="true"{% endif %}>
 						<div class="row text-nowrap flex-nowrap">
 							<div class="col-12">
-								<h4 class="mb-4">Location</h4>
+								<div class="justify-content-between d-flex">
+									<button type="button" class="btn-back body-back"></button>
+									<h4 class="mb-4">Location</h4>
+									<button type="button" class="btn-close body-close"></button>
+								</div>
 
-								{{ form_row(reportForm.long) }}
-								{{ form_row(reportForm.lat) }}
+								{{ form_row(reportForm.longitude) }}
+								{{ form_row(reportForm.latitude) }}
 
-								<button type="submit" class="btn btn-danger btn-lg float-start">Report</button>
-								<button type="button" class="btn btn-primary btn-lg float-end" id="button-find-location">
+								<button type="submit" class="btn btn-danger btn-lg float-left">Report</button>
+								<button type="button" class="btn btn-primary btn-lg float-right" id="button-find-location">
 									<span class="spinner-border spinner-border-sm d-none" role="status"></span>
 									Find my location
 								</button>
@@ -90,6 +104,28 @@
 					{# /location form/ #}
 				</div>
 			</section>
+
+			{# reports download modal #}
+			<div class="modal fade" id="reportsDownloadModal"tabindex="-1">
+				<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Download reports</h5>
+							<button type="button" class="btn-close" data-dismiss="modal"></button>
+						</div>
+
+						<div class="modal-body">
+
+						</div>
+
+						<div class="modal-footer justify-content-between d-flex">
+							<button type="button" class="btn btn-primary btn-lg">Heatmap</button>
+							<button type="button" class="btn btn-primary btn-lg">Spreadsheet</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			{# /reports download modal/ #}
 
 			{{ form_end(reportForm) }}
 		{% endblock %}

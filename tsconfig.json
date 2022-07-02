@@ -10,6 +10,7 @@
 		"allowJs": true
 	},
 	"include": [
+		"assets/ts/LiveFormValidation/index.ts",
 		"assets/ts/StinkMap/index.ts",
 		"assets/**/*"
 	]

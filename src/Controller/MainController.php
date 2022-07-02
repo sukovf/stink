@@ -4,8 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Report;
 use App\Entity\Severity;
+use App\Facade\MainFacade;
+use App\Form\ReportFormFactory;
 use App\Mapbox\MapFactory;
-use App\Types\ReportFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,24 +21,39 @@ class MainController extends AbstractController
 	/**
 	 * @Route("/", name="main")
 	 */
-	public function index(Request $request, MapFactory $mapFactory, EntityManagerInterface $entityManager): Response
+	public function index(Request $request, MainFacade $mainFacade, MapFactory $mapFactory, ReportFormFactory $reportFormFactory, EntityManagerInterface $entityManager): Response
 	{
 		$map = $mapFactory->create();
 
 		$report = new Report();
-		$reportForm = $this->createForm(ReportFormType::class, $report)
+		$reportForm = $reportFormFactory->create($this->createFormBuilder($report))
 			->handleRequest($request);
 
 		$severities = $entityManager->getRepository(Severity::class)->findAll();
 
-		if ($reportForm->isSubmitted() && $reportForm->isValid()) {
-			$this->redirect('this');
+		$shouldFirstFormBeVisible = $mainFacade->shouldFirstFormBeVisible($reportForm);
+		$shouldSecondFormBeVisible = !$shouldFirstFormBeVisible && $mainFacade->shouldSecondFormBeVisible($reportForm);
+
+		if ($reportForm->isSubmitted()) {
+			if ($reportForm->isValid()) {
+				$report = $reportForm->getData();
+				$entityManager->persist($report);
+				$entityManager->flush();
+
+				$this->addFlash('success', 'Report successfully added!');
+			} else {
+				$this->addFlash('danger', 'Something went wrong...');
+			}
+
+			return $this->redirectToRoute('main');
 		}
 
 		return $this->render('base.html.twig', [
-			'map'			=> $map,
-			'severities'	=> $severities,
-			'reportForm'	=> $reportForm->createView()
+			'map'						=> $map,
+			'severities'				=> $severities,
+			'reportForm'				=> $reportForm->createView(),
+			'shouldFirstFormBeVisible'	=> $shouldFirstFormBeVisible,
+			'shouldSecondFormBeVisible'	=> $shouldSecondFormBeVisible
 		]);
 	}
 }

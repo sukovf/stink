@@ -1,5 +1,4 @@
 import TriggeredEvent = JQuery.TriggeredEvent;
-
 const $ = require('jquery');
 import {StinkMap} from "../StinkMap";
 
@@ -9,12 +8,14 @@ import {StinkMap} from "../StinkMap";
 export class Location
 {
 	map: StinkMap;
+	reportFormValidator: any;
 
 	/**
 	 *
 	 */
-	constructor(map: StinkMap) {
+	constructor(map: StinkMap, reportFormValidator: any) {
 		this.map = map;
+		this.reportFormValidator = reportFormValidator;
 
 		this.init();
 	}
@@ -32,8 +33,11 @@ export class Location
 					const long: number = pos.coords.longitude;
 					const lat: number = pos.coords.latitude;
 
-					$('input[name="report_form[long]"]').val(long);
-					$('input[name="report_form[lat]"]').val(lat);
+					const inputLong: JQuery = $('input[name="form[longitude]"]');
+					const inputLat = $('input[name="form[latitude]"]');
+
+					inputLong.val(long).trigger('change');
+					inputLat.val(lat).trigger('change');
 
 					this.map.setMyMarkerLocation([long, lat]);
 

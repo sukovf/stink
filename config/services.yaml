@@ -23,3 +23,14 @@ services:
     App\Mapbox\MapFactory:
         arguments:
             $key: '%env(MAP_TOKEN)%'
+            $westernLimit: '%env(MAP_WESTERN_LIMIT)%'
+            $northernLimit: '%env(MAP_NORTHERN_LIMIT)%'
+            $easternLimit: '%env(MAP_EASTERN_LIMIT)%'
+            $southernLimit: '%env(MAP_SOUTHERN_LIMIT)%'
+
+    App\Form\ReportFormFactory:
+        arguments:
+            $westernLimit: '%env(MAP_WESTERN_LIMIT)%'
+            $northernLimit: '%env(MAP_NORTHERN_LIMIT)%'
+            $easternLimit: '%env(MAP_EASTERN_LIMIT)%'
+            $southernLimit: '%env(MAP_SOUTHERN_LIMIT)%'
