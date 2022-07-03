@@ -22,16 +22,20 @@ class Map
 	/** @var float */
 	private float $southernLimit;
 
+	/** @var string */
+	private string $heatmapDataURL;
+
 	/**
 	 *
 	 */
-	public function __construct(string $key, float $westernLimit, float $northernLimit, float $easternLimit, float $southernLimit)
+	public function __construct(string $key, float $westernLimit, float $northernLimit, float $easternLimit, float $southernLimit, string $heatmapDataURL)
 	{
 		$this->token = $key;
 		$this->westernLimit = $westernLimit;
 		$this->northernLimit = $northernLimit;
 		$this->easternLimit = $easternLimit;
 		$this->southernLimit = $southernLimit;
+		$this->heatmapDataURL = $heatmapDataURL;
 	}
 
 	/**
@@ -72,5 +76,13 @@ class Map
 	public function getSouthernLimit(): float
 	{
 		return $this->southernLimit;
+	}
+
+	/**
+	 *
+	 */
+	public function getHeatmapDataURL(): string
+	{
+		return $this->heatmapDataURL;
 	}
 }

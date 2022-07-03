@@ -1,6 +1,6 @@
 import TriggeredEvent = JQuery.TriggeredEvent;
 const $ = require('jquery');
-import {StinkMap} from "../StinkMap";
+import {StinkMap} from '../StinkMap';
 
 /**
  *
@@ -9,6 +9,12 @@ export class Location
 {
 	map: StinkMap;
 	reportFormValidator: any;
+	locationDeniedHeader: string;
+	locationDeniedMsg: string;
+	locationUnavailableHeader: string;
+	locationUnavailableMsg: string;
+	locationTimeoutHeader: string;
+	locationTimeoutMsg: string;
 
 	/**
 	 *
@@ -17,6 +23,7 @@ export class Location
 		this.map = map;
 		this.reportFormValidator = reportFormValidator;
 
+		this.readMessages();
 		this.init();
 	}
 
@@ -43,11 +50,48 @@ export class Location
 
 					button.removeClass('disabled').find('.spinner-border').addClass('d-none');
 				}, (error: GeolocationPositionError) => {
-					alert(error.message);
+					switch (error.code) {
+						case error.PERMISSION_DENIED:
+							this.setModalMessage(this.locationDeniedHeader, this.locationDeniedMsg);
+							break;
+
+						case error.POSITION_UNAVAILABLE:
+							this.setModalMessage(this.locationUnavailableHeader, this.locationUnavailableMsg);
+							break;
+
+						case error.TIMEOUT:
+							this.setModalMessage(this.locationTimeoutHeader, this.locationTimeoutMsg);
+							break;
+					}
+
+					if (typeof error.code === 'number') {
+						$('#messageModal').modal('show');
+					}
 
 					button.removeClass('disabled').find('.spinner-border').addClass('d-none');
 				});
 			}
 		});
+	}
+
+	/**
+	 *
+	 */
+	private readMessages = () => {
+		const msgContainer: JQuery = $('#body-location');
+		this.locationDeniedHeader = msgContainer.attr('data-msg-location-denied-header');
+		this.locationDeniedMsg = msgContainer.attr('data-msg-location-denied-msg');
+		this.locationUnavailableHeader = msgContainer.attr('data-msg-location-unavailable-header');
+		this.locationUnavailableMsg = msgContainer.attr('data-msg-location-unavailable-msg');
+		this.locationTimeoutHeader = msgContainer.attr('data-msg-location-timeout-header');
+		this.locationTimeoutMsg = msgContainer.attr('data-msg-location-timeout-msg');
+	}
+
+	/**
+	 *
+	 */
+	private setModalMessage = (title: string, msg: string) => {
+		$('#messageModal .modal-title').html(title);
+		$('#messageModal .modal-body').html(msg);
 	}
 }

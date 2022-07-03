@@ -1,0 +1,38 @@
+body.severity: 'Intenzita'
+body.details: 'O vás'
+body.location: 'Poloha'
+
+body.button.new_report: 'Nové hlášení'
+body.button.continue_report: 'Pokračovat v hlášení'
+body.button.pick_location: 'Zadat polohu'
+body.button.report: 'Nahlásit'
+body.button.find_location: 'Najdi mou polohu'
+
+severity.none: 'Žádný'
+severity.barely_noticeable: 'Téměř neznatelný'
+severity.weak: 'Slabý neobtěžující'
+severity.annoying: 'Obtěžující'
+severity.strongly_annoying: 'Silně obtěžující'
+severity.unbearable: 'Nesnesitelný'
+
+form.severity: 'Intenzita'
+form.reporter_name: 'Jméno'
+form.reporter_surname: 'Příjmení'
+form.reporter_email: 'Email'
+form.comment: 'Poznámka'
+form.longitude: 'Zem. délka'
+form.latitude: 'Zem. šířka'
+
+location.denied:
+    header: 'Přístup odepřen'
+    msg: 'Nepodařilo se najít vaši polohu. Povolte aplikaci číst vaši polohu nebo klepněte do mapy a vyberte vaši polohu ručně.'
+location.unavailable:
+    header: 'Poloha není k dispozici'
+    msg: 'Nepodařilo se najít vaši polohu. Klepněte do mapy a vyberte vaši polohu ručně.'
+location.timeout:
+    header: 'Vypršel časový limit'
+    msg: 'Nepodařilo se najít vaši polohu. Klepněte do mapy a vyberte vaši polohu ručně.'
+
+flash.report_added: 'Hlášení bylo přidáno'
+flash.report_failed: 'Přidání hlášení selhalo'
+flash.you_are_robot: 'Vypadáte jako robot'

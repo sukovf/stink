@@ -5,6 +5,7 @@ require('./ts/LiveFormValidation');
 import {StinkMap} from "./ts/StinkMap";
 import {Process} from "./ts/Process";
 import {Location} from "./ts/Location";
+require('./ts/Recaptcha/index');
 
 /**
  *

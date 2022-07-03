@@ -20,7 +20,7 @@ $.fn.liveValidate = function(): JQuery {
 			showErrors(form);
 		});
 
-		$(form).on('submit', () => {
+		$(form).on('submit', (event: any) => {
 			validateElements(form);
 			if (!result.isValid()) {
 				showErrors(form);

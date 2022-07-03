@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Severity;
 use App\LiveFormValidation\Rule\Generator\ConstraintRulesGenerator;
+use App\Types\RecaptchaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -51,42 +52,49 @@ class ReportFormFactory
 	{
 		$builder
 			->add('severity', EntityType::class, [
-				'class' 		=> Severity::class,
-				'choice_label'	=> 'label',
-				'label'			=> 'Severity'
+				'class' 					=> Severity::class,
+				'choice_label'				=> 'label',
+				'choice_translation_domain'	=> 'messages',
+				'label'						=> 'form.severity'
 			])
 			->add('reporterName', TextType::class, [
-				'label' => 'Name'
+				'label' 	=> 'form.reporter_name',
+				'required'	=> false
 			])
 			->add('reporterSurname', TextType::class, [
-				'label' => 'Surname'
+				'label' 	=> 'form.reporter_surname',
+				'required'	=> false
 			])
 			->add('reporterEmail', TextType::class, [
-				'label' => 'Email'
+				'label' 	=> 'form.reporter_email',
+				'required'	=> false
 			])
 			->add('comment', TextareaType::class, [
-				'label' 	=> 'Comment',
+				'label' 	=> 'form.comment',
 				'required'	=> false
 			])
 			->add('longitude', NumberType::class, [
-				'label' 		=> 'Longitude',
+				'label' 		=> 'form.longitude',
 				'constraints'	=> [
 					new Range([
 						'min' 				=> $this->westernLimit,
 						'max' 				=> $this->easternLimit,
-						'notInRangeMessage'	=> 'This value should be between {{ min }} and {{ max }}. You are probably outside the permitted area.'
+						'notInRangeMessage'	=> 'form.longitude'
 					])
 				]
 			])
 			->add('latitude', NumberType::class, [
-				'label' 		=> 'Latitude',
+				'label' 		=> 'form.latitude',
 				'constraints'	=> [
 					new Range([
 						'min' 				=> $this->southernLimit,
 						'max' 				=> $this->northernLimit,
-						'notInRangeMessage'	=> 'This value should be between {{ min }} and {{ max }}. You are probably outside the permitted area.'
+						'notInRangeMessage'	=> 'form.latitude'
 					])
 				]
+			])
+			->add('captcha', RecaptchaType::class, [
+				'type' => 'invisible'
 			]);
 
 		$this->constraintRulesGenerator->generateConstraintRules($builder);

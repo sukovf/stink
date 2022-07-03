@@ -30,19 +30,22 @@ class Report
 	/**
 	 * @var string
 	 * @ORM\Column(type="string", nullable=false)
+	 * @Assert\NotBlank(message="form.reporter_name")
 	 */
 	private string $reporterName;
 
 	/**
 	 * @var string
 	 * @ORM\Column(type="string", nullable=false)
+	 * @Assert\NotBlank(message="form.reporter_surname")
 	 */
 	private string $reporterSurname;
 
 	/**
 	 * @var string
 	 * @ORM\Column(type="string", nullable=false)
-	 * @Assert\Email()
+	 * @Assert\NotBlank(message="form.reporter_email.blank")
+	 * @Assert\Email(message="form.reporter_email.invalid")
 	 */
 	private string $reporterEmail;
 

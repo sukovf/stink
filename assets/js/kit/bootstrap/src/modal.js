@@ -5,6 +5,7 @@
  * --------------------------------------------------------------------------
  */
 
+const $ = require('jquery');
 import {
   getjQuery,
   TRANSITION_END,
@@ -603,7 +604,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (
   data.show(this);
 });
 
-const $ = getjQuery();
+//const $ = getjQuery();
 
 /**
  * ------------------------------------------------------------------------

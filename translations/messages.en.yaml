@@ -1,0 +1,38 @@
+body.severity: 'Severity'
+body.details: 'About you'
+body.location: 'Location'
+
+body.button.new_report: 'New report'
+body.button.continue_report: 'Continue report'
+body.button.pick_location: 'Pick location'
+body.button.report: 'Report'
+body.button.find_location: 'Find my location'
+
+severity.none: 'None'
+severity.barely_noticeable: 'Barely noticeable'
+severity.weak: 'Weak'
+severity.annoying: 'Annoying'
+severity.strongly_annoying: 'Strongly annoying'
+severity.unbearable: 'Unbearable'
+
+form:severity: 'Severity'
+form.reporter_name: 'Name'
+form.reporter_surname: 'Surname'
+form.reporter_email: 'Email'
+form.comment: 'Comment'
+form.longitude: 'Longitude'
+form.latitude: 'Latitude'
+
+location.denied:
+    header: 'Permission denied'
+    msg: 'Cannot find your location. Either allow the app to read your location or tap the map and pick your location manually.'
+location.unavailable:
+    header: 'Location unavailable'
+    msg: 'Cannot find your location. Tap the map and pick your location manually.'
+location.timeout:
+    header: 'Location timeout'
+    msg: 'Cannot find your location. Tap the map and pick your location manually.'
+
+flash.report_added: 'A report has been added'
+flash.report_failed: 'Failed to add a report'
+flash.you_are_robot: 'You seem to be a robot'

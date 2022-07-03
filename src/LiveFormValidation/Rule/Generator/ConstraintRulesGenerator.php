@@ -44,6 +44,10 @@ class ConstraintRulesGenerator
 
 			$options = $element->getOptions();
 
+			if (isset($options['mapped']) && !$options['mapped']) {
+				continue;
+			}
+
 			// collect all constraints
 			$constraints = array_merge(
 				$this->collectOptionsConstraints($options),

@@ -28,11 +28,11 @@
 			<section class="w-100 justify-content-center d-flex">
 				<div class="body card">
 					{# default card #}
-					<div class="card-body" id="body-default">
+					<div class="card-body" id="body-default" data-continue-report="{% trans %}body.button.continue_report{% endtrans %}">
 						<div class="row">
 							<div class="col-12">
-								<button type="button" id="button-new-report" class="btn btn-danger btn-lg float-left">New report</button>
-								<button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#reportsDownloadModal">Reports</button>
+								<button type="button" id="button-new-report" class="btn btn-danger btn-lg float-left">{% trans %}body.button.new_report{% endtrans %}</button>
+								<button type="button" class="btn btn-dark btn-lg float-right" data-toggle="modal" data-target="#reportsDownloadModal">Reports</button>
 							</div>
 						</div>
 					</div>
@@ -44,13 +44,16 @@
 							<div class="col-12">
 								<div class="justify-content-between d-flex">
 									<button type="button" class="btn-back disabled"></button>
-									<h4 class="mb-4">Severity</h4>
+									<h4 class="mb-4">{% trans %}body.severity{% endtrans %}</h4>
 									<button type="button" class="btn-close body-close"></button>
 								</div>
 
 								{% for severity in severities %}
 									<div class="row mb-3 mx-0">
-										<button type="button" class="btn btn-lg severity" data-id="{{ severity.id }}" data-color="{{ severity.color }}">{{ severity.label }} ({{ severity.id - 1 }})</button>
+										<button type="button" class="btn btn-lg btn-white severity" data-id="{{ severity.id }}" data-color="{{ severity.color }}">
+											{{ severity.label|trans }} ({{ severity.id - 1 }})
+											<span class="stripe"></span>
+										</button>
 									</div>
 								{% endfor %}
 							</div>
@@ -64,7 +67,7 @@
 							<div class="col-12">
 								<div class="justify-content-between d-flex">
 									<button type="button" class="btn-back body-back"></button>
-									<h4 class="mb-4">Details</h4>
+									<h4 class="mb-4">{% trans %}body.details{% endtrans %}</h4>
 									<button type="button" class="btn-close body-close"></button>
 								</div>
 
@@ -74,29 +77,36 @@
 								{{ form_row(reportForm.reporterEmail) }}
 								{{ form_row(reportForm.comment) }}
 
-								<button type="button" class="btn btn-danger btn-lg" id="button-pick-location">Pick location</button>
+								<button type="button" class="btn btn-danger btn-lg" id="button-pick-location">{% trans %}body.button.pick_location{% endtrans %}</button>
 							</div>
 						</div>
 					</div>
 					{# /report form/ #}
 
 					{# location form #}
-					<div class="card-body" id="body-location" {% if shouldSecondFormBeVisible %}data-is-visible="true"{% endif %}>
+					<div class="card-body" id="body-location" {% if shouldSecondFormBeVisible %}data-is-visible="true"{% endif %}
+						 data-msg-location-denied-header="{% trans %}location.denied.header{% endtrans %}"
+						 data-msg-location-denied-msg="{% trans %}location.denied.msg{% endtrans %}"
+						 data-msg-location-unavailable-header="{% trans %}location.unavailable.header{% endtrans %}"
+						 data-msg-location-unavailable-msg="{% trans %}location.unavailable.msg{% endtrans %}"
+						 data-msg-location-timeout-header="{% trans %}location.timeout.header{% endtrans %}"
+						 data-msg-location-timeout-msg="{% trans %}location.timeout.msg{% endtrans %}">
 						<div class="row text-nowrap flex-nowrap">
 							<div class="col-12">
 								<div class="justify-content-between d-flex">
 									<button type="button" class="btn-back body-back"></button>
-									<h4 class="mb-4">Location</h4>
+									<h4 class="mb-4">{% trans %}body.location{% endtrans %}</h4>
 									<button type="button" class="btn-close body-close"></button>
 								</div>
 
 								{{ form_row(reportForm.longitude) }}
 								{{ form_row(reportForm.latitude) }}
+								{{ form_row(reportForm.captcha) }}
 
-								<button type="submit" class="btn btn-danger btn-lg float-left">Report</button>
-								<button type="button" class="btn btn-primary btn-lg float-right" id="button-find-location">
+								<button type="submit" class="btn btn-danger btn-lg float-left">{% trans %}body.button.report{% endtrans %}</button>
+								<button type="button" class="btn btn-dark btn-lg float-right" id="button-find-location">
 									<span class="spinner-border spinner-border-sm d-none" role="status"></span>
-									Find my location
+									{% trans %}body.button.find_location{% endtrans %}
 								</button>
 							</div>
 						</div>
@@ -106,7 +116,7 @@
 			</section>
 
 			{# reports download modal #}
-			<div class="modal fade" id="reportsDownloadModal"tabindex="-1">
+			<div class="modal fade" id="reportsDownloadModal" tabindex="-1">
 				<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -127,11 +137,31 @@
 			</div>
 			{# /reports download modal/ #}
 
+			{# message modal #}
+			<div class="modal fade" id="messageModal" tabindex="-1">
+				<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title"></h5>
+							<button type="button" class="btn-close" data-dismiss="modal"></button>
+						</div>
+
+						<div class="modal-body"></div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			{# /message modal/ #}
+
 			{{ form_end(reportForm) }}
 		{% endblock %}
 
 		{% block javascripts %}
 			<script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
+			<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?onload=onGoogleReCaptchaApiLoad&render=explicit&hl={{ app.request.locale }}" async defer></script>
 		{% endblock %}
 	</body>
 </html>

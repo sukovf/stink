@@ -55,4 +55,25 @@ class MainFacade
 
 		return false;
 	}
+
+	/**
+	 *
+	 */
+	public function isUserRobot(FormInterface $form): bool
+	{
+		if (!$form->isSubmitted() || $form->isValid()) {
+			return false;
+		}
+
+		foreach ($form->getErrors(true) as $error) {
+			if ($error->getCause() instanceof ConstraintViolationInterface) {
+				$propertyPath = $error->getCause()->getPropertyPath();
+				if (str_contains($propertyPath, 'recaptcha')) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
 }

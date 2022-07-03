@@ -2,11 +2,14 @@ import TriggeredEvent = JQuery.TriggeredEvent;
 import Select from './../../js/kit/pro/select';
 const $ = require('jquery');
 
+/**
+ *
+ */
 enum Section {
-	Default,
-	Severity,
-	Details,
-	Location
+	Default = 0,
+	Severity = 1,
+	Details = 2,
+	Location = 3
 }
 
 /**
@@ -17,6 +20,7 @@ export class Process
 	section: Section;
 	severity: number;
 	reportFormValidator: any;
+	continueReportLabel: string;
 
 	/**
 	 *
@@ -27,6 +31,7 @@ export class Process
 		this.reportFormValidator = reportFormValidator;
 
 		this.init();
+		this.readMessages();
 	}
 
 	/**
@@ -52,8 +57,6 @@ export class Process
 			this.toggleCardBody('#body-severity', false);
 			this.toggleCardBody('#body-report-form', false);
 			this.toggleCardBody('#body-location', false);
-
-			this.section = Section.Default;
 		});
 
 		const shouldFirstFormBeVisible: boolean = typeof $('#body-report-form').attr('data-is-visible') !== 'undefined';
@@ -68,10 +71,18 @@ export class Process
 		}
 
 		$('#button-new-report').on('click', () => {
-			this.toggleCardBody('#body-severity', true);
-			this.toggleCardBody('#body-default', false);
+			if (this.section === Section.Details) {
+				this.toggleCardBody('#body-report-form', true);
+				this.toggleCardBody('#body-default', false);
+			} else if (this.section === Section.Location) {
+				this.toggleCardBody('#body-location', true);
+				this.toggleCardBody('#body-default', false);
+			} else {
+				this.toggleCardBody('#body-severity', true);
+				this.toggleCardBody('#body-default', false);
 
-			this.section = Section.Severity;
+				this.section = Section.Severity;
+			}
 		});
 
 		$('.severity').on('click', (event: TriggeredEvent) => {
@@ -80,6 +91,8 @@ export class Process
 
 			this.toggleCardBody('#body-report-form', true);
 			this.toggleCardBody('#body-severity', false);
+
+			$('#button-new-report').text(this.continueReportLabel);
 
 			this.section = Section.Details;
 		});
@@ -116,5 +129,12 @@ export class Process
 				}, 250);
 			}
 		}, delay);
+	}
+
+	/**
+	 *
+	 */
+	private readMessages = () => {
+		this.continueReportLabel = $('#body-default').attr('data-continue-report');
 	}
 }

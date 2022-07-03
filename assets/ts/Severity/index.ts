@@ -9,8 +9,8 @@ export class Severity
 	 *
 	 */
 	constructor() {
-		$.each($('.severity'), (index: number, severity: HTMLElement) => {
-			severity.style.backgroundColor = severity.getAttribute('data-color');
+		$.each($('.severity > .stripe'), (index: number, severityStripe: HTMLElement) => {
+			severityStripe.style.backgroundColor = $(severityStripe).parent().attr('data-color');
 		});
 	}
 }

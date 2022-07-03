@@ -44,6 +44,8 @@ export class StinkMap
 		const southernLimit: number = parseFloat(this.mapContainer.getAttribute('data-southern-limit'));
 		this.mapContainer.removeAttribute('data-southern-limit');
 
+		const heatmapDataURL: string = this.mapContainer.getAttribute('data-heatmap-data-url');
+
 		this.map = new Map({
 			accessToken: token,
 			container: this.mapContainer,
@@ -59,12 +61,12 @@ export class StinkMap
 			const coords: LngLat = event.lngLat;
 			this.marker.setLngLat(coords);
 
-			$('input[name="form[longitude]"]').val(coords.lng);
-			$('input[name="form[latitude]"]').val(coords.lat);
+			$('input[name="form[longitude]"]').val(coords.lng).trigger('change');
+			$('input[name="form[latitude]"]').val(coords.lat).trigger('change');
 		}).on('load', () => {
 			this.map.addSource('reports', {
 				type: 'geojson',
-				data: 'http://stink.localhost:8080/data.geojson'
+				data: heatmapDataURL
 			});
 
 			this.map.addLayer({
@@ -89,7 +91,19 @@ export class StinkMap
 						1,
 						9,
 						3
-					]
+					],
+					'heatmap-color': [
+						'interpolate',
+						['linear'],
+						['heatmap-density'],
+						0, 'rgba(76, 175, 80, 0)',
+						0.2, '#6EBA40',
+						0.4, '#A6C633',
+						0.6, '#D1B024',
+						0.8, '#DD6413',
+						1, '#E90004'
+					],
+					'heatmap-opacity': 0.2
 				}
 			});
 		});
