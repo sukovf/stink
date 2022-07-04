@@ -5,11 +5,11 @@
 /config/secrets/prod/prod.decrypt.private.php
 /.idea/
 /node_modules/
-/public/bundles/
-/public/css/
-/public/fonts/
-/public/js/
-/public/mix-manifest.json
+/www/bundles/
+/www/css/
+/www/fonts/
+/www/js/
+/www/mix-manifest.json
 /var/
 /vendor/
 ###< symfony/framework-bundle ###

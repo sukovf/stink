@@ -7,6 +7,7 @@ doctrine:
         #server_version: '13'
     orm:
         auto_generate_proxy_classes: true
+        proxy_dir: '%kernel.cache_dir%/../../doctrine/%env(APP_ENV)%/orm/Proxies'
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
@@ -26,6 +27,7 @@ when@prod:
     doctrine:
         orm:
             auto_generate_proxy_classes: false
+            proxy_dir: '%kernel.cache_dir%/../../doctrine/%env(APP_ENV)%/orm/Proxies'
             query_cache_driver:
                 type: pool
                 pool: doctrine.system_cache_pool

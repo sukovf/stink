@@ -71,6 +71,7 @@
         "symfony": {
             "allow-contrib": false,
             "require": "6.1.*"
-        }
+        },
+        "public-dir": "www"
     }
 }

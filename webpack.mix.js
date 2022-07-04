@@ -6,7 +6,7 @@ mix
 			children: true
 		}
 	})
-	.setPublicPath('public')
+	.setPublicPath('www')
 	.ts('assets/app.ts', 'js/app.js')
 	.sass('assets/app.scss', 'css/app.css')
 	.disableNotifications()
