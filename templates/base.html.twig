@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>{% block title %}Welcome!{% endblock %}</title>
+		<title>{% block title %}Dýchej bez obav{% endblock %}</title>
 
 		{% block stylesheets %}
 			<link rel="stylesheet" href="{{ asset('/css/app.css') }}">
@@ -30,9 +30,9 @@
 					{# default card #}
 					<div class="card-body" id="body-default" data-continue-report="{% trans %}body.button.continue_report{% endtrans %}">
 						<div class="row">
-							<div class="col-12">
-								<button type="button" id="button-new-report" class="btn btn-danger btn-lg float-left">{% trans %}body.button.new_report{% endtrans %}</button>
-								<button type="button" class="btn btn-dark btn-lg float-right" data-toggle="modal" data-target="#reportsDownloadModal">Reports</button>
+							<div class="col-12 d-flex justify-content-between">
+								<button type="button" id="button-new-report" class="btn btn-danger btn-lg text-nowrap">{% trans %}body.button.new_report{% endtrans %}</button>
+								<button type="button" class="btn btn-dark btn-lg text-nowrap" data-toggle="modal" data-target="#reportsDownloadModal">Reports</button>
 							</div>
 						</div>
 					</div>

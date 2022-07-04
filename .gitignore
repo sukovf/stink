@@ -10,6 +10,7 @@
 /www/fonts/
 /www/js/
 /www/mix-manifest.json
+/www/php-error.log
 /var/
 /vendor/
 ###< symfony/framework-bundle ###

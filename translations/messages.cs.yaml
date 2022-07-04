@@ -3,7 +3,7 @@ body.details: 'O vás'
 body.location: 'Poloha'
 
 body.button.new_report: 'Nové hlášení'
-body.button.continue_report: 'Pokračovat v hlášení'
+body.button.continue_report: 'Pokračovat'
 body.button.pick_location: 'Zadat polohu'
 body.button.report: 'Nahlásit'
 body.button.find_location: 'Najdi mou polohu'
