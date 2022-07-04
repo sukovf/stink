@@ -50,6 +50,11 @@ export class StinkMap
 			accessToken: token,
 			container: this.mapContainer,
 			style: 'mapbox://styles/sukovf/cl5152acy000z15pf1cd2g437',
+			pitchWithRotate: false,
+			touchPitch: false,
+			dragRotate: false,
+			doubleClickZoom: true,
+			minZoom: 10,
 			bounds: [
 				[westernLimit, southernLimit],
 				[easternLimit, northernLimit]
@@ -64,11 +69,60 @@ export class StinkMap
 			$('input[name="form[longitude]"]').val(coords.lng).trigger('change');
 			$('input[name="form[latitude]"]').val(coords.lat).trigger('change');
 		}).on('load', () => {
+			// reports data source
 			this.map.addSource('reports', {
 				type: 'geojson',
 				data: heatmapDataURL
 			});
 
+			// bounds data source
+			this.map.addSource('bounds', {
+				type: 'geojson',
+				data: {
+					type: 'Feature',
+					properties: {},
+					geometry: {
+						type: 'MultiPolygon',
+						coordinates: [
+							[
+								[
+									[-180, -90,],
+									[westernLimit, southernLimit],
+									[easternLimit, southernLimit],
+									[180, -90],
+									[-180, -90]
+								]
+							], [
+								[
+									[-180, 90],
+									[westernLimit, northernLimit],
+									[westernLimit, southernLimit],
+									[-180, -90],
+									[-180, 90]
+								]
+							], [
+								[
+									[-180, 90],
+									[180, 90],
+									[easternLimit, northernLimit],
+									[westernLimit, northernLimit],
+									[-180, 90]
+								]
+							], [
+								[
+									[180, 90],
+									[easternLimit, northernLimit],
+									[easternLimit, southernLimit],
+									[180, -90],
+									[180, 90]
+								]
+							]
+						]
+					}
+				}
+			});
+
+			// reports heatmap layer
 			this.map.addLayer({
 				type: 'heatmap',
 				id: 'reports-heat',
@@ -106,6 +160,19 @@ export class StinkMap
 					'heatmap-opacity': 0.2
 				}
 			});
+
+			// bounds layer
+			this.map.addLayer({
+				id: 'bounds',
+				source: 'bounds',
+				type: 'fill',
+				layout: {},
+				paint: {
+					'fill-color': '#f93154',
+					'fill-opacity': 0.08,
+					'fill-antialias': false
+				}
+			})
 		});
 
 		this.marker.setLngLat([0, 0]).addTo(this.map);

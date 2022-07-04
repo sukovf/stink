@@ -51,7 +51,7 @@
 								{% for severity in severities %}
 									<div class="row mb-3 mx-0">
 										<button type="button" class="btn btn-lg btn-white severity" data-id="{{ severity.id }}" data-color="{{ severity.color }}">
-											{{ severity.label|trans }} ({{ severity.id - 1 }})
+											{{ severity.label|trans }}
 											<span class="stripe"></span>
 										</button>
 									</div>
