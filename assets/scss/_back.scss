@@ -1,0 +1,37 @@
+@import "./kit/bootstrap/variables";
+@import "./kit/bootstrap/functions";
+@import "./kit/bootstrap/mixins";
+
+$btn-back-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='#{$btn-close-color}' viewBox='0 0 16 16'><path d='M3.586 8 L11.293.293a1 1 0 111.414 1.414L6.414 8l6.293 6.293a1 1 0 01-1.414 1.414L3.586 8 z'/></svg>") !default;
+
+.btn-back {
+	box-sizing: content-box;
+	width: $btn-close-width;
+	height: $btn-close-height;
+	padding: $btn-close-padding-y $btn-close-padding-x;
+	color: $btn-close-color;
+	background: transparent escape-svg($btn-back-bg) no-repeat center center / $btn-close-width auto;
+	background-clip: content-box;
+	border: 0; // for button elements
+	@include border-radius();
+	opacity: $btn-close-opacity;
+
+	&:hover {
+		color: $btn-close-color;
+		text-decoration: none;
+		opacity: $btn-close-hover-opacity;
+	}
+
+	&:focus {
+		outline: none;
+		box-shadow: $btn-close-focus-shadow;
+		opacity: $btn-close-focus-opacity;
+	}
+
+	&:disabled,
+	&.disabled {
+		pointer-events: none;
+		user-select: none;
+		opacity: $btn-close-disabled-opacity;
+	}
+}

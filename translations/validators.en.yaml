@@ -1,0 +1,8 @@
+form.severity: 'Select severity'
+form.reporter_name: 'Name cannot be empty'
+form.reporter_surname: 'Surname cannot be empty'
+form.reporter_email:
+    blank: 'Email cannot be empty'
+    invalid: 'Invalid email'
+form.longitude: 'Longitude should be between {{ min }} and {{ max }}. You are probably outside the area of interest'
+form.latitude: 'Latitude should be between {{ min }} and {{ max }}. You are probably outside the area of interest'

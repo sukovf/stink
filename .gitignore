@@ -1,18 +1,15 @@
-
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /.idea/
-/public/bundles/
+/node_modules/
+/www/bundles/
+/www/css/
+/www/fonts/
+/www/js/
+/www/mix-manifest.json
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-
-###> symfony/webpack-encore-bundle ###
-/node_modules/
-/public/build/
-npm-debug.log
-yarn-error.log
-###< symfony/webpack-encore-bundle ###

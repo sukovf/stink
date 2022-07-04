@@ -1,0 +1,8 @@
+form.severity: 'Vyberte intenzitu'
+form.reporter_name: 'Zadejte jméno'
+form.reporter_surname: 'Zadejte příjmení'
+form.reporter_email:
+    blank: 'Zadejte email'
+    invalid: 'Neplatný email'
+form.longitude: 'Zem. délka musí ležet mezi {{ min }} a {{ max }}. Zřejmě se nacházíte mimo zájmovou oblast'
+form.latitude: 'Zem. šířka musí ležet mezi {{ min }} a {{ max }}. Zřejmě se nacházíte mimo zájmovou oblast'

@@ -1,0 +1,17 @@
+.body {
+	width: 100%;
+	position: fixed;
+	bottom: -0.25rem;
+	max-height: 100%;
+	overflow-y: auto;
+
+	& > .card-body {
+		display: none;
+	}
+}
+
+@media only screen and (min-width: 576px) {
+	.body {
+		width: 500px;
+	}
+}

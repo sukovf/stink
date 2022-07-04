@@ -1,0 +1,16 @@
+.severity {
+	white-space: nowrap;
+	width: 100%;
+	position: relative;
+
+	& > .stripe {
+		position: absolute;
+		width: 1rem;
+		height: 100%;
+		left: 0;
+		top: 0;
+		pointer-events: none;
+		border-bottom-left-radius: 0.25rem;
+		border-top-left-radius: 0.25rem;
+	}
+}
