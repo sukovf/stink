@@ -28,6 +28,13 @@ class Report
 	private Severity $severity;
 
 	/**
+	 * @var StinkNature
+	 * @ORM\ManyToOne(targetEntity="StinkNature")
+	 * @ORM\JoinColumn(name="stink_nature_id", referencedColumnName="id", nullable=false)
+	 */
+	private StinkNature $stinkNature;
+
+	/**
 	 * @var string
 	 * @ORM\Column(type="string", nullable=false)
 	 * @Assert\NotBlank(message="form.reporter_name")
@@ -111,6 +118,22 @@ class Report
 	public function setSeverity(Severity $severity): void
 	{
 		$this->severity = $severity;
+	}
+
+	/**
+	 * @return StinkNature
+	 */
+	public function getStinkNature(): StinkNature
+	{
+		return $this->stinkNature;
+	}
+
+	/**
+	 * @param StinkNature $stinkNature
+	 */
+	public function setStinkNature(StinkNature $stinkNature): void
+	{
+		$this->stinkNature = $stinkNature;
 	}
 
 	/**

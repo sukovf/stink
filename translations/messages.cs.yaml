@@ -15,7 +15,13 @@ severity.annoying: 'Obtěžující'
 severity.strongly_annoying: 'Silně obtěžující'
 severity.unbearable: 'Nesnesitelný'
 
+nature.other: 'Ostatní'
+nature.rotten_fruit: 'Zkažené ovoce'
+nature.chemical: 'Chemický'
+nature.burnt_plastic: 'Spálený plast'
+
 form.severity: 'Intenzita'
+form.stink_nature: 'Charakter zápachu'
 form.reporter_name: 'Jméno'
 form.reporter_surname: 'Příjmení'
 form.reporter_email: 'Email'

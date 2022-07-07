@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Severity;
+use App\Entity\StinkNature;
 use App\LiveFormValidation\Rule\Generator\ConstraintRulesGenerator;
 use App\Types\RecaptchaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -56,6 +57,12 @@ class ReportFormFactory
 				'choice_label'				=> 'label',
 				'choice_translation_domain'	=> 'messages',
 				'label'						=> 'form.severity'
+			])
+			->add('stinkNature', EntityType::class, [
+				'class'						=> StinkNature::class,
+				'choice_label'				=> 'label',
+				'choice_translation_domain'	=> 'messages',
+				'label'						=> 'form.stink_nature'
 			])
 			->add('reporterName', TextType::class, [
 				'label' 	=> 'form.reporter_name',
