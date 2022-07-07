@@ -1,3 +1,22 @@
+nav:
+    about: 'About'
+    personal_data: 'Personal data'
+    cookies: 'Cookies'
+
+modal:
+    about:
+        title: 'About'
+        text: 'The <b>dychejbezobav.cz</b> project was created as a response to the demand of the residents of <b>Juliánov</b>, <b>Židenice</b>, <b>Vinohrady</b>, <b>Líšeň</b>, <b>Slatina</b>, <b>Černovice</b> and surrounding Brno districts in connection with the source of the smell, <b>Foundry HEUNISCH Brno s.r.o.</b><br><br>
+                The aim of the project is to map the occurrence, intensity and direction of the smell on the basis of the residents'' reports and to provide the competent authorities in particular with data for initiating remedial action against the source of the smell.<br><br>
+                The author of the project is Ing. Petr Kunc'
+    personal_data:
+        title: 'Personal data'
+        text: 'The data collected by this website will be provider primarily to the representatives if the <b>South Moravian Region</b>, the <b>South Moravian Region Health Service</b>, and the <b>Ministry of the Environment</b> as a basis for further proceeding with the smell generators and other authorities.<br><br>
+                By submitting a report from this website, you agree to such use of the data provided by you - <b>the intensity and the nature of the smell</b>, <b>name</b>, <b>surname</b>, <b>email</b>, <b>comment</b>, and <b>location</b>.'
+    cookies:
+        title: 'Cookies'
+        text: 'This website uses cookies, but only those that are necessary for the proper functioning of the website. We don''t use cookies for any analysis or data collection.'
+
 body.severity: 'Severity'
 body.details: 'About you'
 body.location: 'Location'

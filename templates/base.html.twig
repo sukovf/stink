@@ -11,6 +11,38 @@
 	</head>
 	<body>
 		{% block body %}
+			{{ mapbox(map) }}
+
+			{# navbar #}
+			<section class="w-100 justify-content-center d-flex">
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<div class="container-fluid flex-row-reverse flex-lg-row">
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+							<i class="fas fa-bars"></i>
+						</button>
+
+						<span class="text-nowrap title">
+							<h3 class="mb-0">Dýchej bez obav</h3>
+						</span>
+
+						<div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+								<li class="nav-item">
+									<a class="nav-link" href="#" data-toggle="modal" data-target="#aboutModal">{% trans %}nav.about{% endtrans %}</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#" data-toggle="modal" data-target="#personalDataModal">{% trans %}nav.personal_data{% endtrans %}</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#" data-toggle="modal" data-target="#cookiesModal">{% trans %}nav.cookies{% endtrans %}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</section>
+			{# /navbar/ #}
+
 			{% for label, messages in app.flashes %}
 				{% for message in messages %}
 					<div class="alert alert-dismissible alert-{{ label }} mx-5 my-3" role="alert" data-color="{{ label }}">
@@ -20,8 +52,6 @@
 					</div>
 				{% endfor %}
 			{% endfor %}
-
-			{{ mapbox(map) }}
 
 			{{ form_start(reportForm, {'attr': {'novalidate': 'novalidate'}}) }}
 
@@ -156,6 +186,69 @@
 				</div>
 			</div>
 			{# /message modal/ #}
+
+			{# about modal #}
+			<div class="modal fade" id="aboutModal" tabindex="-1">
+				<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">{% trans %}modal.about.title{% endtrans %}</h5>
+							<button type="button" class="btn-close" data-dismiss="modal"></button>
+						</div>
+
+						<div class="modal-body">
+							{% trans %}modal.about.text{% endtrans %}
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			{# /about modal/ #}
+
+			{# personal data modal #}
+			<div class="modal fade" id="personalDataModal" tabindex="-1">
+				<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">{% trans %}modal.personal_data.title{% endtrans %}</h5>
+							<button type="button" class="btn-close" data-dismiss="modal"></button>
+						</div>
+
+						<div class="modal-body">
+							{% trans %}modal.personal_data.text{% endtrans %}
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			{# /personal data modal/ #}
+
+			{# cookies modal #}
+			<div class="modal fade" id="cookiesModal" tabindex="-1">
+				<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">{% trans %}modal.cookies.title{% endtrans %}</h5>
+							<button type="button" class="btn-close" data-dismiss="modal"></button>
+						</div>
+
+						<div class="modal-body">
+							{% trans %}modal.cookies.text{% endtrans %}
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			{# /cookies modal/ #}
 
 			{{ form_end(reportForm) }}
 		{% endblock %}
