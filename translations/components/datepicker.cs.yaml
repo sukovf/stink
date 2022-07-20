@@ -1,0 +1,88 @@
+datepicker:
+    format: 'dd.mm.yyyy'
+
+    title: 'Vyberte datum'
+    january:
+        full: 'Leden'
+        short: 'Led'
+    february:
+        full: 'Únor'
+        short: 'Ún'
+    march:
+        full: 'Březen'
+        short: 'Bře'
+    april:
+        full: 'Duben'
+        short: 'Dub'
+    may:
+        full: 'Květen'
+        short: 'Kvě'
+    june:
+        full: 'Červen'
+        short: 'Čer'
+    july:
+        full: 'Červenec'
+        short: 'Čev'
+    august:
+        full: 'Srpen'
+        short: 'Srp'
+    september:
+        full: 'Září'
+        short: 'Zář'
+    october:
+        full: 'Říjen'
+        short: 'Říj'
+    november:
+        full: 'Lispotad'
+        short: 'Lis'
+    december:
+        full: 'Prosinec'
+        short: 'Pro'
+
+    monday:
+        full: 'Pondělí'
+        short: 'Po'
+        narrow: 'P'
+    tuesday:
+        full: 'Úterý'
+        short: 'Út'
+        narrow: 'Ú'
+    wednesday:
+        full: 'Středa'
+        short: 'St'
+        narrow: 'S'
+    thursday:
+        full: 'Čtvrtek'
+        short: 'Čt'
+        narrow: 'Č'
+    friday:
+        full: 'Pátek'
+        short: 'Pá'
+        narrow: 'P'
+    saturday:
+        full: 'Sobora'
+        short: 'So'
+        narrow: 'S'
+    sunday:
+        full: 'Neděle'
+        short: 'Ne'
+        narrow: 'N'
+
+    button:
+        ok: 'OK'
+        cancel: 'Zrušit'
+        clear: 'Vyčistit'
+
+    label:
+        ok: 'Potvrdit výběr'
+        cancel: 'Zrušit výběr'
+        clear: 'Vyčistit výběr'
+        nextMonth: 'Další měsíc'
+        prevMonth: 'Předchozí měsíc'
+        nextYear: 'Další rok'
+        prevYear: 'Předchozí rok'
+        nextMultiYear: 'Dalších 24 let'
+        prevMultiYear: 'Předchozích 24 let'
+        switchToMultiYearView: 'Vyberte rok a měsíc'
+        switchToMonthView: 'Vyberte datum'
+        switchToDayView: 'Vyberte datum'

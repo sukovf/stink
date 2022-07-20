@@ -1,5 +1,5 @@
 const $ = require('jquery');
-import {LngLat, LngLatLike, Map, MapMouseEvent, Marker} from "mapbox-gl";
+import {GeoJSONSource, LngLat, LngLatLike, Map, MapMouseEvent, Marker} from "mapbox-gl";
 
 /**
  *
@@ -31,6 +31,29 @@ export class StinkMap
 	/**
 	 *
 	 */
+	public getHeatmapUrl = (): string => {
+		return this.mapContainer.getAttribute('data-heatmap-data-url');
+	}
+
+	/**
+	 *
+	 */
+	public setHeatmapData = (data: string) => {
+		const source: GeoJSONSource = this.map.getSource('reports') as GeoJSONSource;
+		source.setData(data);
+	}
+
+	/**
+	 *
+	 */
+	public resetHeatmapData = () => {
+		const source: GeoJSONSource = this.map.getSource('reports') as GeoJSONSource;
+		source.setData(this.getHeatmapUrl());
+	}
+
+	/**
+	 *
+	 */
 	private init = () => {
 		const token: string = this.mapContainer.getAttribute('data-token');
 		this.mapContainer.removeAttribute('data-token')
@@ -44,7 +67,7 @@ export class StinkMap
 		const southernLimit: number = parseFloat(this.mapContainer.getAttribute('data-southern-limit'));
 		this.mapContainer.removeAttribute('data-southern-limit');
 
-		const heatmapDataURL: string = this.mapContainer.getAttribute('data-heatmap-data-url');
+		const heatmapDataURL: string = this.getHeatmapUrl();
 
 		this.map = new Map({
 			accessToken: token,

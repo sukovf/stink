@@ -17,36 +17,52 @@ modal:
         title: 'Cookies'
         text: 'This website uses cookies, but only those that are necessary for the proper functioning of the website. We don''t use cookies for any analysis or data collection.'
 
-body.severity: 'Severity'
-body.details: 'About you'
-body.location: 'Location'
+body:
+    severity: 'Severity'
+    details: 'About you'
+    location: 'Location'
+    overview:
+        title: 'Reports overview'
+        from: 'From'
+        to: 'To'
+        show: 'Show'
+        error:
+            title: 'Error'
+            text: 'Failed to load data.'
+        bar:
+            from: 'From'
+            to: 'To'
+    button:
+        new_report: 'New report'
+        overview: 'Overview'
+        continue_report: 'Continue report'
+        pick_location: 'Pick location'
+        report: 'Report'
+        find_location: 'Find my location'
 
-body.button.new_report: 'New report'
-body.button.continue_report: 'Continue report'
-body.button.pick_location: 'Pick location'
-body.button.report: 'Report'
-body.button.find_location: 'Find my location'
+severity:
+    none: 'None'
+    barely_noticeable: 'Barely noticeable'
+    weak: 'Weak'
+    annoying: 'Annoying'
+    strongly_annoying: 'Strongly annoying'
+    unbearable: 'Unbearable'
 
-severity.none: 'None'
-severity.barely_noticeable: 'Barely noticeable'
-severity.weak: 'Weak'
-severity.annoying: 'Annoying'
-severity.strongly_annoying: 'Strongly annoying'
-severity.unbearable: 'Unbearable'
+nature:
+    other: 'Other'
+    rotten_fruit: 'Rotten fruit'
+    chemical: 'Chemical'
+    burnt_plastic: 'Burnt plastic'
 
-nature.other: 'Other'
-nature.rotten_fruit: 'Rotten fruit'
-nature.chemical: 'Chemical'
-nature.burnt_plastic: 'Burnt plastic'
-
-form.severity: 'Severity'
-form.stink_nature: 'Stink nature'
-form.reporter_name: 'Name'
-form.reporter_surname: 'Surname'
-form.reporter_email: 'Email'
-form.comment: 'Comment'
-form.longitude: 'Longitude'
-form.latitude: 'Latitude'
+form:
+    severity: 'Severity'
+    stink_nature: 'Stink nature'
+    reporter_name: 'Name'
+    reporter_surname: 'Surname'
+    reporter_email: 'Email'
+    comment: 'Comment'
+    longitude: 'Longitude'
+    latitude: 'Latitude'
 
 location.denied:
     header: 'Permission denied'
@@ -58,6 +74,7 @@ location.timeout:
     header: 'Location timeout'
     msg: 'Cannot find your location. Tap the map and pick your location manually.'
 
-flash.report_added: 'A report has been added'
-flash.report_failed: 'Failed to add a report'
-flash.you_are_robot: 'You seem to be a robot'
+flash:
+    report_added: 'A report has been added'
+    report_failed: 'Failed to add a report'
+    you_are_robot: 'You seem to be a robot'

@@ -1,0 +1,6 @@
+timepicker:
+    label:
+        ok: 'OK'
+        cancel: 'Zrušit'
+        clear: 'Vyčistit'
+        invalid: 'Neplatný formát času'

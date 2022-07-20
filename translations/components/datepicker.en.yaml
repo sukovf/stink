@@ -1,0 +1,88 @@
+datepicker:
+    format: 'mm-dd-yyyy'
+
+    title: 'Select date'
+    january:
+        full: 'January'
+        short: 'Jan'
+    february:
+        full: 'February'
+        short: 'Feb'
+    march:
+        full: 'March'
+        short: 'Mar'
+    april:
+        full: 'April'
+        short: 'Apr'
+    may:
+        full: 'May'
+        short: 'May'
+    june:
+        full: 'June'
+        short: 'Jun'
+    july:
+        full: 'July'
+        short: 'Jul'
+    august:
+        full: 'August'
+        short: 'Aug'
+    september:
+        full: 'September'
+        short: 'Sep'
+    october:
+        full: 'October'
+        short: 'Oct'
+    november:
+        full: 'November'
+        short: 'Nov'
+    december:
+        full: 'December'
+        short: 'Dec'
+
+    monday:
+        full: 'Monday'
+        short: 'Mon'
+        narrow: 'M'
+    tuesday:
+        full: 'Tuesday'
+        short: 'Tue'
+        narrow: 'T'
+    wednesday:
+        full: 'Wednesday'
+        short: 'Wed'
+        narrow: 'W'
+    thursday:
+        full: 'Thursday'
+        short: 'Thu'
+        narrow: 'T'
+    friday:
+        full: 'Friday'
+        short: 'Fri'
+        narrow: 'F'
+    saturday:
+        full: 'Saturday'
+        short: 'Sat'
+        narrow: 'S'
+    sunday:
+        full: 'Sunday'
+        short: 'Sun'
+        narrow: 'S'
+
+    button:
+        ok: 'OK'
+        cancel: 'Cancel'
+        clear: 'Clear'
+
+    label:
+        ok: 'Confirm selection'
+        cancel: 'Cancel selection'
+        clear: 'Clear selection'
+        nextMonth: 'Next month'
+        prevMonth: 'Previous month'
+        nextYear: 'Next year'
+        prevYear: 'Previous year'
+        nextMultiYear: 'Next 24 years'
+        prevMultiYear: 'Previous 24 years'
+        switchToMultiYearView: 'Choose year and month'
+        switchToMonthView: 'Choose date'
+        switchToDayView: 'Choose date'

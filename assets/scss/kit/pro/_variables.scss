@@ -70,7 +70,7 @@ $timepicker-elements-border-top-right-radius: 7px;
 $timepicker-elements-border-top-left-radius: 7px;
 $timepicker-elements-media-border-bottom-left-radius: 4px;
 
-$timepicker-head-background-color: $blue-accent-400;
+$timepicker-head-background-color: $danger;
 $timepicker-head-height: 100px;
 $timepicker-head-border-top-right-radius: 4px;
 $timepicker-head-border-top-left-radius: 4px;
@@ -88,7 +88,7 @@ $timepicker-button-font-weight: 500;
 $timepicker-button-line-height: 40px;
 $timepicker-button-border-radius: 10px;
 $timepicker-button-letter-spacing: 0.1rem;
-$timepicker-button-color: $blue-accent-400;
+$timepicker-button-color: $danger;
 $timepicker-button-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
   box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 $timepicker-button-hover-background-color: rgba(0, 0, 0, 0.08);
@@ -131,7 +131,7 @@ $timepicker-time-tips-inner-height: 32px;
 $timepicker-time-tips-inner-font-size: 1.1rem;
 $timepicker-time-tips-inner-font-weight: 300;
 $timepicker-time-tips-inner-active-color: $white;
-$timepicker-time-tips-inner-active-background-color: $blue-accent-400;
+$timepicker-time-tips-inner-active-background-color: $danger;
 $timepicker-time-tips-inner-active-font-weight: 400;
 $timepicker-time-tips-inner-disabled-color: #b3afaf;
 
@@ -157,9 +157,9 @@ $timepicker-item-middle-dot-width: 6px;
 $timepicker-item-middle-dot-height: $timepicker-item-middle-dot-width;
 $timepicker-item-middle-dot-transform: translate(-50%, -50%);
 $timepicker-item-middle-dot-border-radius: 50%;
-$timepicker-item-middle-dot-background-color: $blue-accent-400;
+$timepicker-item-middle-dot-background-color: $danger;
 
-$timepicker-hand-pointer-background-color: $blue-accent-400;
+$timepicker-hand-pointer-background-color: $danger;
 $timepicker-hand-pointer-bottom: 50%;
 $timepicker-hand-pointer-height: 40%;
 $timepicker-hand-pointer-left: calc(50% - 1px);
@@ -177,7 +177,7 @@ $timepicker-circle-top: -21px;
 $timepicker-circle-left: -15px;
 $timepicker-circle-width: 4px;
 $timepicker-circle-border-width: 14px;
-$timepicker-circle-border-color: $blue-accent-400;
+$timepicker-circle-border-color: $danger;
 $timepicker-circle-height: 4px;
 
 $timepicker-hour-mode-color: $white;
@@ -204,14 +204,14 @@ $timepicker-icon-down-bottom: -47px;
 
 $timepicker-icon-btn-width: 30px;
 $timepicker-icon-btn-height: 30px;
-$timepicker-input-color: $blue-accent-400;
+$timepicker-input-color: $danger;
 
 $timepicker-btn-icon-right: -10px;
 $timepicker-btn-icon-transform: translate(-50%, -50%);
 $timepicker-btn-icon-top: 50%;
 $timepicker-btn-icon-transition: all 0.3s ease;
-$timepicker-btn-icon-hover-color: $blue-accent-400;
-$timepicker-btn-icon-focus-color: $blue-accent-400;
+$timepicker-btn-icon-hover-color: $danger;
+$timepicker-btn-icon-focus-color: $danger;
 
 // Lightbox
 
@@ -298,7 +298,7 @@ $datepicker-modal-container-media-day-cell-height: $datepicker-modal-container-m
 
 $datepicker-header-height: 120px;
 $datepicker-header-padding-x: 24px;
-$datepicker-header-background-color: $blue-accent-400;
+$datepicker-header-background-color: $danger;
 $datepicker-header-border-radius: 4px 4px 0 0;
 
 $datepicker-title-height: 32px;
@@ -365,10 +365,10 @@ $datepicker-day-heading-font-weight: 400;
 
 $datepicker-cell-disabled-color: #ccc;
 $datepicker-cell-hover-background-color: #d3d3d3;
-$datepicker-cell-selected-background-color: $blue-accent-400;
+$datepicker-cell-selected-background-color: $danger;
 $datepicker-cell-selected-color: $white;
 $datepicker-cell-focused-background-color: #eee;
-$datepicker-cell-focused-selected-background-color: $blue-accent-400;
+$datepicker-cell-focused-selected-background-color: $danger;
 $datepicker-cell-border-width: 1px;
 $datepicker-cell-border-color: $black;
 
@@ -397,7 +397,7 @@ $datepicker-footer-height: 56px;
 $datepicker-footer-padding-x: $datepicker-yearview-content-padding-x;
 
 $datepicker-footer-btn-background-color: $white;
-$datepicker-footer-btn-color: $blue-accent-400;
+$datepicker-footer-btn-color: $danger;
 $datepicker-footer-btn-padding-x: 10px;
 $datepicker-footer-btn-font-size: 0.8rem;
 $datepicker-footer-btn-font-weight: 500;

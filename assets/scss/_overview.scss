@@ -1,0 +1,35 @@
+@import "./kit/free/variables";
+
+.overview-bar {
+	display: flex;
+	justify-content: center;
+	z-index: 2;
+	overflow: hidden;
+	transition: all 0.25s ease-in-out;
+	height: 40px;
+
+	&.hidden {
+		height: 0 !important;
+	}
+
+	& > .content {
+		z-index: 2;
+		width: 100%;
+		background: white;
+		border-bottom-left-radius: $card-border-radius;
+		border-bottom-right-radius: $card-border-radius;
+		padding: 0.5rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+
+@media only screen and (min-width: 576px) {
+	.overview-bar {
+
+		& > .content {
+			width: 500px;
+		}
+	}
+}

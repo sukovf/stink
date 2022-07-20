@@ -15,8 +15,10 @@ import Ripple from './free/ripple';
 // MDB PRO COMPONENTS
 import Animate from './pro/animate';
 import Alert from './pro/alert';
+import Timepicker from './pro/timepicker';
 import Navbar from './pro/navbar';
 import LazyLoad from './pro/lazyLoad';
+import Datepicker from './pro/datepicker';
 import Popconfirm from './pro/popconfirm';
 import Sticky from './pro/sticky';
 import Select from './pro/select';
@@ -29,26 +31,28 @@ import Autocomplete from './pro/autocomplete';
 [...document.querySelectorAll('[data-toggle="popover"]')].map((popover) => new Popover(popover));
 
 export {
-  // FREE
-  Button,
-  Collapse,
-  Dropdown,
-  Input,
-  Modal,
-  Popover,
-  ScrollSpy,
-  Ripple,
-  Tab,
-  Tooltip,
-  // PRO
-  Alert,
-  Animate,
-  Navbar,
-  Popconfirm,
-  SmoothScroll,
-  LazyLoad,
-  Sticky,
-  Select,
-  Touch,
-  Autocomplete,
+	// FREE
+	Button,
+	Collapse,
+	Dropdown,
+	Input,
+	Modal,
+	Popover,
+	ScrollSpy,
+	Ripple,
+	Tab,
+	Tooltip,
+	// PRO
+	Alert,
+	Animate,
+	Datepicker,
+	Navbar,
+	Popconfirm,
+	SmoothScroll,
+	Timepicker,
+	LazyLoad,
+	Sticky,
+	Select,
+	Touch,
+	Autocomplete,
 };

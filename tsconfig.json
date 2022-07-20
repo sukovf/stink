@@ -6,7 +6,7 @@
 		"preserveConstEnums": true,
 		"sourceMap": true,
 		"moduleResolution": "Node",
-		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": false,
 		"allowJs": true
 	},
 	"include": [

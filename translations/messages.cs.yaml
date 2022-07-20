@@ -17,36 +17,52 @@ modal:
         title: 'Cookies'
         text: 'Tato stránka používá cookies, ale pouze ty, které jsou nezbytné pro správné fungování. Nepoužíváme cookies pro žádné analýzy ani shromažďování dat.'
 
-body.severity: 'Intenzita'
-body.details: 'O vás'
-body.location: 'Poloha'
+body:
+    severity: 'Intenzita'
+    details: 'O vás'
+    location: 'Poloha'
+    overview:
+        title: 'Přehled hlášení'
+        from: 'Od'
+        to: 'Do'
+        show: 'Zobrazit'
+        error:
+            title: 'Chyba'
+            text: 'Nepodařilo se načíst data.'
+        bar:
+            from: 'Od'
+            to: 'Do'
+    button:
+        new_report: 'Nové hlášení'
+        overview: 'Přehled'
+        continue_report: 'Pokračovat'
+        pick_location: 'Zadat polohu'
+        report: 'Nahlásit'
+        find_location: 'Najdi mou polohu'
 
-body.button.new_report: 'Nové hlášení'
-body.button.continue_report: 'Pokračovat'
-body.button.pick_location: 'Zadat polohu'
-body.button.report: 'Nahlásit'
-body.button.find_location: 'Najdi mou polohu'
+severity:
+    none: 'Žádný'
+    barely_noticeable: 'Téměř neznatelný'
+    weak: 'Slabý neobtěžující'
+    annoying: 'Obtěžující'
+    strongly_annoying: 'Silně obtěžující'
+    unbearable: 'Nesnesitelný'
 
-severity.none: 'Žádný'
-severity.barely_noticeable: 'Téměř neznatelný'
-severity.weak: 'Slabý neobtěžující'
-severity.annoying: 'Obtěžující'
-severity.strongly_annoying: 'Silně obtěžující'
-severity.unbearable: 'Nesnesitelný'
+nature:
+    other: 'Ostatní'
+    rotten_fruit: 'Zkažené ovoce'
+    nature.chemical: 'Chemický'
+    burnt_plastic: 'Spálený plast'
 
-nature.other: 'Ostatní'
-nature.rotten_fruit: 'Zkažené ovoce'
-nature.chemical: 'Chemický'
-nature.burnt_plastic: 'Spálený plast'
-
-form.severity: 'Intenzita'
-form.stink_nature: 'Charakter zápachu'
-form.reporter_name: 'Jméno'
-form.reporter_surname: 'Příjmení'
-form.reporter_email: 'Email'
-form.comment: 'Poznámka'
-form.longitude: 'Zem. délka'
-form.latitude: 'Zem. šířka'
+form:
+    severity: 'Intenzita'
+    stink_nature: 'Charakter zápachu'
+    reporter_name: 'Jméno'
+    reporter_surname: 'Příjmení'
+    reporter_email: 'Email'
+    comment: 'Poznámka'
+    longitude: 'Zem. délka'
+    latitude: 'Zem. šířka'
 
 location.denied:
     header: 'Přístup odepřen'
@@ -58,6 +74,7 @@ location.timeout:
     header: 'Vypršel časový limit'
     msg: 'Nepodařilo se najít vaši polohu. Klepněte do mapy a vyberte vaši polohu ručně.'
 
-flash.report_added: 'Hlášení bylo přidáno'
-flash.report_failed: 'Přidání hlášení selhalo'
-flash.you_are_robot: 'Vypadáte jako robot'
+flash:
+    report_added: 'Hlášení bylo přidáno'
+    report_failed: 'Přidání hlášení selhalo'
+    you_are_robot: 'Vypadáte jako robot'
