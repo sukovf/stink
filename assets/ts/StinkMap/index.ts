@@ -1,5 +1,7 @@
 const $ = require('jquery');
-import {GeoJSONSource, LngLat, LngLatLike, Map, MapMouseEvent, Marker} from "mapbox-gl";
+import {GeoJSONSource, LngLat, LngLatLike, Map, MapMouseEvent, Marker} from 'mapbox-gl';
+import jqXHR = JQuery.jqXHR;
+import {Message} from '../Message';
 
 /**
  *
@@ -9,6 +11,9 @@ export class StinkMap
 	mapContainer: HTMLElement;
 	map: Map;
 	marker: Marker;
+	dataErrorTitle: string;
+	dataErrorText: string;
+	dataLoadedCallback: (isInitial: boolean, fromDate: string|null, toDate: string|null) => void|null;
 
 	/**
 	 *
@@ -18,6 +23,13 @@ export class StinkMap
 		this.marker = new Marker();
 
 		this.init();
+	}
+
+	/**
+	 *
+	 */
+	public setOnDataLoaded = (callback: (isInitial: boolean, fromDate: string|null, toDate: string|null) => void) => {
+		this.dataLoadedCallback = callback;
 	}
 
 	/**
@@ -38,17 +50,37 @@ export class StinkMap
 	/**
 	 *
 	 */
-	public setHeatmapData = (data: string) => {
-		const source: GeoJSONSource = this.map.getSource('reports') as GeoJSONSource;
-		source.setData(data);
+	private loadHeatmapData = (isInitial: boolean = false, from: string|null = null, to: string|null = null) => {
+		$('#map-spinner-container').removeClass('d-none');
+
+		$.ajax({
+			url: this.getHeatmapUrl(),
+			method: 'GET',
+			data: {
+				from: from,
+				to: to
+			}
+		}).done((data: any) => {
+			const source: GeoJSONSource = this.map.getSource('reports') as GeoJSONSource;
+			source.setData(data.data);
+
+			if (this.dataLoadedCallback) {
+				this.dataLoadedCallback(isInitial, data.fromDate, data.toDate);
+			}
+		}).always((data: any, textStatus: any, jqXHR: jqXHR) => {
+			if (jqXHR.status !== 200) {
+				Message.show(this.dataErrorTitle, this.dataErrorText);
+			}
+
+			$('#map-spinner-container').addClass('d-none');
+		});
 	}
 
 	/**
 	 *
 	 */
-	public resetHeatmapData = () => {
-		const source: GeoJSONSource = this.map.getSource('reports') as GeoJSONSource;
-		source.setData(this.getHeatmapUrl());
+	public setHeatmapData = (isInitial: boolean = false, from: string|null = null, to: string|null = null) => {
+		this.loadHeatmapData(isInitial, from, to);
 	}
 
 	/**
@@ -67,7 +99,8 @@ export class StinkMap
 		const southernLimit: number = parseFloat(this.mapContainer.getAttribute('data-southern-limit'));
 		this.mapContainer.removeAttribute('data-southern-limit');
 
-		const heatmapDataURL: string = this.getHeatmapUrl();
+		this.dataErrorTitle = this.mapContainer.getAttribute('data-error-title');
+		this.dataErrorText = this.mapContainer.getAttribute('data-error-text');
 
 		this.map = new Map({
 			accessToken: token,
@@ -95,8 +128,13 @@ export class StinkMap
 			// reports data source
 			this.map.addSource('reports', {
 				type: 'geojson',
-				data: heatmapDataURL
+				data: {
+					type: 'FeatureCollection',
+					features: []
+				}
 			});
+
+			this.setHeatmapData(true);
 
 			// bounds data source
 			this.map.addSource('bounds', {

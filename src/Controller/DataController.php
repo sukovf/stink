@@ -20,6 +20,6 @@ class DataController extends AbstractController
 	public function getData(Request $request, EntityManagerInterface $entityManager): Response
 	{
 		$dataProvider = new GeoJsonDataProvider($entityManager);
-		return $dataProvider->getData($request);
+		return $dataProvider->getData($request)->makeResponse();
 	}
 }

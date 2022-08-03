@@ -43,10 +43,10 @@
 			</section>
 			{# /navbar/ #}
 
-			<div class="overview-bar hidden">
+			<div class="overview-bar">
 				<div class="content">
-					<span>Overview:</span>
-					<button type="button" class="btn-close"></button>
+					<span></span>
+					<button type="button" class="btn-close hidden"></button>
 				</div>
 			</div>
 
@@ -155,8 +155,6 @@
 
 			{# reports download modal #}
 			<div class="modal fade" id="reportsDownloadModal" tabindex="-1"
-				 data-error-title="{{ 'body.overview.error.title'|trans }}"
-				 data-error-text="{{ 'body.overview.error.text'|trans }}"
 				 data-overview-bar-from="{{ 'body.overview.bar.from'|trans }}"
 				 data-overview-bar-to="{{ 'body.overview.bar.to'|trans }}">
 				<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
