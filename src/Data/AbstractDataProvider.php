@@ -72,7 +72,9 @@ abstract class AbstractDataProvider implements DataProviderInterface
 				$queryBuilder->where('r.created >= DATE_SUB(:latestDate, 24, \'HOUR\')');
 				$queryParams['latestDate'] = $latestReport->getCreated()->format('Y-m-d H:i:s');
 
-				$from = $latestReport->getCreated()->sub(DateInterval::createFromDateString('24 hour'))->format('d.m.Y H:i:s');
+				$latestReportCreated = clone($latestReport->getCreated());
+
+				$from = $latestReportCreated->sub(DateInterval::createFromDateString('24 hour'))->format('d.m.Y H:i:s');
 				$to = $latestReport->getCreated()->format('d.m.Y H:i:s');
 			}
 		}
