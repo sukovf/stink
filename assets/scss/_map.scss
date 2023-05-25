@@ -1,4 +1,5 @@
-@import "mapbox-gl";
+@import 'mapbox-gl';
+@import './kit/free/variables';
 
 #map {
 	position: absolute;
@@ -8,4 +9,19 @@
 	width: 100vw;
 	height: 100vh;
 	overflow: hidden;
+}
+
+#map-spinner-container {
+	position: absolute;
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	align-items: center;
+	justify-content: center;
+	background: rgba(255, 255, 255, 0.5);
+
+	& > .spinner-border {
+		border-color: $danger;
+		border-right-color: transparent;
+	}
 }

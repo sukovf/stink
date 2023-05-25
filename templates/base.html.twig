@@ -11,6 +11,45 @@
 	</head>
 	<body>
 		{% block body %}
+			{{ mapbox(map) }}
+
+			{# navbar #}
+			<section class="w-100 justify-content-center d-flex">
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<div class="container-fluid flex-row-reverse flex-lg-row">
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+							<i class="fas fa-bars"></i>
+						</button>
+
+						<span class="text-nowrap title">
+							<h3 class="mb-0">Dýchej bez obav</h3>
+						</span>
+
+						<div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+								<li class="nav-item">
+									<a class="nav-link" href="#" data-toggle="modal" data-target="#aboutModal">{{ 'nav.about'|trans }}</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#" data-toggle="modal" data-target="#personalDataModal">{{ 'nav.personal_data'|trans }}</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#" data-toggle="modal" data-target="#cookiesModal">{{ 'nav.cookies'|trans }}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</section>
+			{# /navbar/ #}
+
+			<div class="overview-bar">
+				<div class="content">
+					<span></span>
+					<button type="button" class="btn-close hidden"></button>
+				</div>
+			</div>
+
 			{% for label, messages in app.flashes %}
 				{% for message in messages %}
 					<div class="alert alert-dismissible alert-{{ label }} mx-5 my-3" role="alert" data-color="{{ label }}">
@@ -21,18 +60,16 @@
 				{% endfor %}
 			{% endfor %}
 
-			{{ mapbox(map) }}
-
 			{{ form_start(reportForm, {'attr': {'novalidate': 'novalidate'}}) }}
 
 			<section class="w-100 justify-content-center d-flex">
 				<div class="body card">
 					{# default card #}
-					<div class="card-body" id="body-default" data-continue-report="{% trans %}body.button.continue_report{% endtrans %}">
+					<div class="card-body" id="body-default" data-continue-report="{{ 'body.button.continue_report'|trans }}">
 						<div class="row">
 							<div class="col-12 d-flex justify-content-between">
-								<button type="button" id="button-new-report" class="btn btn-danger btn-lg text-nowrap">{% trans %}body.button.new_report{% endtrans %}</button>
-								<button type="button" class="btn btn-dark btn-lg text-nowrap" data-toggle="modal" data-target="#reportsDownloadModal">Reports</button>
+								<button type="button" id="button-new-report" class="btn btn-danger btn-lg text-nowrap">{{ 'body.button.new_report'|trans }}</button>
+								<button type="button" class="btn btn-dark btn-lg text-nowrap" data-toggle="modal" data-target="#reportsDownloadModal">{{ 'body.button.overview'|trans }}</button>
 							</div>
 						</div>
 					</div>
@@ -44,14 +81,14 @@
 							<div class="col-12">
 								<div class="justify-content-between d-flex">
 									<button type="button" class="btn-back disabled"></button>
-									<h4 class="mb-4">{% trans %}body.severity{% endtrans %}</h4>
+									<h4 class="mb-4">{{ 'body.severity'|trans }}</h4>
 									<button type="button" class="btn-close body-close"></button>
 								</div>
 
 								{% for severity in severities %}
 									<div class="row mb-3 mx-0">
 										<button type="button" class="btn btn-lg btn-white severity" data-id="{{ severity.id }}" data-color="{{ severity.color }}">
-											{{ severity.label|trans }} ({{ severity.id - 1 }})
+											{{ severity.label|trans }}
 											<span class="stripe"></span>
 										</button>
 									</div>
@@ -67,17 +104,18 @@
 							<div class="col-12">
 								<div class="justify-content-between d-flex">
 									<button type="button" class="btn-back body-back"></button>
-									<h4 class="mb-4">{% trans %}body.details{% endtrans %}</h4>
+									<h4 class="mb-4">{{ 'body.details'|trans }}</h4>
 									<button type="button" class="btn-close body-close"></button>
 								</div>
 
 								{{ form_row(reportForm.severity) }}
+								{{ form_row(reportForm.stinkNature) }}
 								{{ form_row(reportForm.reporterName) }}
 								{{ form_row(reportForm.reporterSurname) }}
 								{{ form_row(reportForm.reporterEmail) }}
 								{{ form_row(reportForm.comment) }}
 
-								<button type="button" class="btn btn-danger btn-lg" id="button-pick-location">{% trans %}body.button.pick_location{% endtrans %}</button>
+								<button type="button" class="btn btn-danger btn-lg" id="button-pick-location">{{ 'body.button.pick_location'|trans }}</button>
 							</div>
 						</div>
 					</div>
@@ -85,17 +123,17 @@
 
 					{# location form #}
 					<div class="card-body" id="body-location" {% if shouldSecondFormBeVisible %}data-is-visible="true"{% endif %}
-						 data-msg-location-denied-header="{% trans %}location.denied.header{% endtrans %}"
-						 data-msg-location-denied-msg="{% trans %}location.denied.msg{% endtrans %}"
-						 data-msg-location-unavailable-header="{% trans %}location.unavailable.header{% endtrans %}"
-						 data-msg-location-unavailable-msg="{% trans %}location.unavailable.msg{% endtrans %}"
-						 data-msg-location-timeout-header="{% trans %}location.timeout.header{% endtrans %}"
-						 data-msg-location-timeout-msg="{% trans %}location.timeout.msg{% endtrans %}">
+						 data-msg-location-denied-header="{{ 'location.denied.header'|trans }}"
+						 data-msg-location-denied-msg="{{ 'location.denied.msg'|trans }}"
+						 data-msg-location-unavailable-header="{{ 'location.unavailable.header'|trans }}"
+						 data-msg-location-unavailable-msg="{{ 'location.unavailable.msg'|trans }}"
+						 data-msg-location-timeout-header="{{ 'location.timeout.header'|trans }}"
+						 data-msg-location-timeout-msg="{{ 'location.timeout.msg'|trans }}">
 						<div class="row text-nowrap flex-nowrap">
 							<div class="col-12">
 								<div class="justify-content-between d-flex">
 									<button type="button" class="btn-back body-back"></button>
-									<h4 class="mb-4">{% trans %}body.location{% endtrans %}</h4>
+									<h4 class="mb-4">{{ 'body.location'|trans }}</h4>
 									<button type="button" class="btn-close body-close"></button>
 								</div>
 
@@ -103,10 +141,10 @@
 								{{ form_row(reportForm.latitude) }}
 								{{ form_row(reportForm.captcha) }}
 
-								<button type="submit" class="btn btn-danger btn-lg float-left">{% trans %}body.button.report{% endtrans %}</button>
+								<button type="submit" class="btn btn-danger btn-lg float-left">{{ 'body.button.report'|trans }}</button>
 								<button type="button" class="btn btn-dark btn-lg float-right" id="button-find-location">
 									<span class="spinner-border spinner-border-sm d-none" role="status"></span>
-									{% trans %}body.button.find_location{% endtrans %}
+									{{ 'body.button.find_location'|trans }}
 								</button>
 							</div>
 						</div>
@@ -116,21 +154,57 @@
 			</section>
 
 			{# reports download modal #}
-			<div class="modal fade" id="reportsDownloadModal" tabindex="-1">
+			<div class="modal fade" id="reportsDownloadModal" tabindex="-1"
+				 data-overview-bar-from="{{ 'body.overview.bar.from'|trans }}"
+				 data-overview-bar-to="{{ 'body.overview.bar.to'|trans }}">
 				<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Download reports</h5>
+							<h5 class="modal-title">{{ 'body.overview.title'|trans }}</h5>
 							<button type="button" class="btn-close" data-dismiss="modal"></button>
 						</div>
 
 						<div class="modal-body">
+							<table class="table-borderless">
+								<tr>
+									<td>
+										<label class="form-label">{{ 'body.overview.from'|trans }}</label>
+									</td>
+									<td class="px-2">
+										<div class="form-outline form-widget-wrapper mb-3 datepicker">
+											<input type="text" class="form-control" name="overview-from-date">
+										</div>
+									</td>
+									<td class="px-2">
+										<div class="form-outline form-widget-wrapper mb-3 timepicker" data-timepicker-format24="true">
+											<input type="text" class="form-control" name="overview-from-time">
+										</div>
+									</td>
+								</tr>
 
+								<tr>
+									<td>
+										<label class="form-label">{{ 'body.overview.to'|trans }}</label>
+									</td>
+									<td class="px-2">
+										<div class="form-outline form-widget-wrapper mb-3 datepicker">
+											<input type="text" class="form-control" name="overview-to-date">
+										</div>
+									</td>
+									<td class="px-2">
+										<div class="form-outline form-widget-wrapper mb-3 timepicker" data-timepicker-format24="true">
+											<input type="text" class="form-control" name="overview-to-time">
+										</div>
+									</td>
+								</tr>
+							</table>
 						</div>
 
-						<div class="modal-footer justify-content-between d-flex">
-							<button type="button" class="btn btn-primary btn-lg">Heatmap</button>
-							<button type="button" class="btn btn-primary btn-lg">Spreadsheet</button>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-dark btn-lg" id="show-overview">
+								<span class="spinner-border spinner-border-sm d-none" role="status"></span>
+								{{ 'body.overview.show'|trans }}
+							</button>
 						</div>
 					</div>
 				</div>
@@ -156,6 +230,69 @@
 			</div>
 			{# /message modal/ #}
 
+			{# about modal #}
+			<div class="modal fade" id="aboutModal" tabindex="-1">
+				<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">{{ 'modal.about.title'|trans|raw }}</h5>
+							<button type="button" class="btn-close" data-dismiss="modal"></button>
+						</div>
+
+						<div class="modal-body">
+							{{ 'modal.about.text'|trans|raw }}
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			{# /about modal/ #}
+
+			{# personal data modal #}
+			<div class="modal fade" id="personalDataModal" tabindex="-1">
+				<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">{{ 'modal.personal_data.title'|trans|raw }}</h5>
+							<button type="button" class="btn-close" data-dismiss="modal"></button>
+						</div>
+
+						<div class="modal-body">
+							{{ 'modal.personal_data.text'|trans|raw }}
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			{# /personal data modal/ #}
+
+			{# cookies modal #}
+			<div class="modal fade" id="cookiesModal" tabindex="-1">
+				<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">{{ 'modal.cookies.title'|trans|raw }}</h5>
+							<button type="button" class="btn-close" data-dismiss="modal"></button>
+						</div>
+
+						<div class="modal-body">
+							{{ 'modal.cookies.text'|trans|raw }}
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			{# /cookies modal/ #}
+
 			{{ form_end(reportForm) }}
 		{% endblock %}
 
@@ -163,5 +300,8 @@
 			<script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
 			<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?onload=onGoogleReCaptchaApiLoad&render=explicit&hl={{ app.request.locale }}" async defer></script>
 		{% endblock %}
+
+		{% include 'Components/datepicker_locale.html.twig' %}
+		{% include 'Components/timepicker_locale.html.twig' %}
 	</body>
 </html>

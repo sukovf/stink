@@ -1,0 +1,6 @@
+timepicker:
+    label:
+        ok: 'OK'
+        cancel: 'Cancel'
+        clear: 'Clear'
+        invalid: 'Invalid Time Format'

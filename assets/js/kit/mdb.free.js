@@ -1,7 +1,6 @@
 // BOOTSTRAP CORE COMPONENTS
 import Alert from './bootstrap/src/alert';
 import Button from './bootstrap/src/button';
-import Carousel from './bootstrap/src/carousel';
 import Collapse from './bootstrap/src/collapse';
 import Modal from './bootstrap/src/modal';
 import Popover from './bootstrap/src/popover';
@@ -23,7 +22,6 @@ import Ripple from './free/ripple';
 export {
   Alert,
   Button,
-  Carousel,
   Collapse,
   Dropdown,
   Input,

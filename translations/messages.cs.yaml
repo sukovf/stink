@@ -1,27 +1,68 @@
-body.severity: 'Intenzita'
-body.details: 'O vás'
-body.location: 'Poloha'
+nav:
+    about: 'O projektu'
+    personal_data: 'Osobní údaje'
+    cookies: 'Cookies'
 
-body.button.new_report: 'Nové hlášení'
-body.button.continue_report: 'Pokračovat'
-body.button.pick_location: 'Zadat polohu'
-body.button.report: 'Nahlásit'
-body.button.find_location: 'Najdi mou polohu'
+modal:
+    about:
+        title: 'O projektu'
+        text: 'Projekt <b>dychejbezobav.cz</b> vznikl jako reakce na poptávku obyvatel <b>Juliánova</b>, <b>Židenice</b>, <b>Vinohrad</b>, <b>Líšně</b>, <b>Slatiny</b>, <b>Černovic</b> a okolních brněnských městských částí v souvislosti se zdrojem zápachu <b>Slévárnou HEUNISCH Brno s.r.o.</b><br><br>
+                Cílem projektu je ve větší míře na základě hlášení obyvatel mapovat výskyt zápachu, jeho intenzitu i směr a poskytnout zejména kompetentním úřadům data pro zahájení jednání o nápravě se zdroji tohoto zápachu.<br><br>
+                Autorem projektu je Ing. Petr Kunc'
+    personal_data:
+        title: 'Osobní údaje'
+        text: 'Data získaná touto aplikací budou poskytnuta primárně představitelům <b>KrÚ JMK</b>, <b>KHS JMK</b> a <b>MŽP</b> jako podklad pro další jednání s původci zápachu a ostatními úřady.<br><br>
+                Odesláním hlášení z této aplikace souhlasíte s takovým využitím Vámi zadaných údajů (<b>charakter a intenzita zápachu</b>, <b>jméno</b>, <b>příjmení</b>, <b>email</b>, <b>komentář</b> a <b>poloha</b>).'
+    cookies:
+        title: 'Cookies'
+        text: 'Tato stránka používá cookies, ale pouze ty, které jsou nezbytné pro správné fungování. Nepoužíváme cookies pro žádné analýzy ani shromažďování dat.'
 
-severity.none: 'Žádný'
-severity.barely_noticeable: 'Téměř neznatelný'
-severity.weak: 'Slabý neobtěžující'
-severity.annoying: 'Obtěžující'
-severity.strongly_annoying: 'Silně obtěžující'
-severity.unbearable: 'Nesnesitelný'
+body:
+    severity: 'Intenzita'
+    details: 'O vás'
+    location: 'Poloha'
+    overview:
+        title: 'Přehled hlášení'
+        from: 'Od'
+        to: 'Do'
+        show: 'Zobrazit'
+        error:
+            title: 'Chyba'
+            text: 'Nepodařilo se načíst data.'
+        bar:
+            from: 'Od'
+            to: 'Do'
+    button:
+        new_report: 'Nové hlášení'
+        overview: 'Přehled'
+        continue_report: 'Pokračovat'
+        pick_location: 'Zadat polohu'
+        report: 'Nahlásit'
+        find_location: 'Najdi mou polohu'
 
-form.severity: 'Intenzita'
-form.reporter_name: 'Jméno'
-form.reporter_surname: 'Příjmení'
-form.reporter_email: 'Email'
-form.comment: 'Poznámka'
-form.longitude: 'Zem. délka'
-form.latitude: 'Zem. šířka'
+severity:
+    none: 'Žádný'
+    barely_noticeable: 'Téměř neznatelný'
+    weak: 'Slabý neobtěžující'
+    annoying: 'Obtěžující'
+    strongly_annoying: 'Silně obtěžující'
+    unbearable: 'Nesnesitelný'
+
+nature:
+    other: 'Ostatní'
+    rotten_fruit: 'Zkažené ovoce'
+    nature.chemical: 'Chemický'
+    burnt_plastic: 'Spálený plast'
+
+form:
+    severity: 'Intenzita'
+    stink_nature: 'Charakter zápachu'
+    reporter_name: 'Jméno'
+    reporter_surname: 'Příjmení'
+    reporter_email: 'Email'
+    comment: 'Poznámka'
+    longitude: 'Zem. délka'
+    latitude: 'Zem. šířka'
 
 location.denied:
     header: 'Přístup odepřen'
@@ -33,6 +74,7 @@ location.timeout:
     header: 'Vypršel časový limit'
     msg: 'Nepodařilo se najít vaši polohu. Klepněte do mapy a vyberte vaši polohu ručně.'
 
-flash.report_added: 'Hlášení bylo přidáno'
-flash.report_failed: 'Přidání hlášení selhalo'
-flash.you_are_robot: 'Vypadáte jako robot'
+flash:
+    report_added: 'Hlášení bylo přidáno'
+    report_failed: 'Přidání hlášení selhalo'
+    you_are_robot: 'Vypadáte jako robot'

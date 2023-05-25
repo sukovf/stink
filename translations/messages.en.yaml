@@ -1,27 +1,68 @@
-body.severity: 'Severity'
-body.details: 'About you'
-body.location: 'Location'
+nav:
+    about: 'About'
+    personal_data: 'Personal data'
+    cookies: 'Cookies'
 
-body.button.new_report: 'New report'
-body.button.continue_report: 'Continue report'
-body.button.pick_location: 'Pick location'
-body.button.report: 'Report'
-body.button.find_location: 'Find my location'
+modal:
+    about:
+        title: 'About'
+        text: 'The <b>dychejbezobav.cz</b> project was created as a response to the demand of the residents of <b>Juliánov</b>, <b>Židenice</b>, <b>Vinohrady</b>, <b>Líšeň</b>, <b>Slatina</b>, <b>Černovice</b> and surrounding Brno districts in connection with the source of the smell, <b>Foundry HEUNISCH Brno s.r.o.</b><br><br>
+                The aim of the project is to map the occurrence, intensity and direction of the smell on the basis of the residents'' reports and to provide the competent authorities in particular with data for initiating remedial action against the source of the smell.<br><br>
+                The author of the project is Ing. Petr Kunc'
+    personal_data:
+        title: 'Personal data'
+        text: 'The data collected by this website will be provider primarily to the representatives if the <b>South Moravian Region</b>, the <b>South Moravian Region Health Service</b>, and the <b>Ministry of the Environment</b> as a basis for further proceeding with the smell generators and other authorities.<br><br>
+                By submitting a report from this website, you agree to such use of the data provided by you - <b>the intensity and the nature of the smell</b>, <b>name</b>, <b>surname</b>, <b>email</b>, <b>comment</b>, and <b>location</b>.'
+    cookies:
+        title: 'Cookies'
+        text: 'This website uses cookies, but only those that are necessary for the proper functioning of the website. We don''t use cookies for any analysis or data collection.'
 
-severity.none: 'None'
-severity.barely_noticeable: 'Barely noticeable'
-severity.weak: 'Weak'
-severity.annoying: 'Annoying'
-severity.strongly_annoying: 'Strongly annoying'
-severity.unbearable: 'Unbearable'
+body:
+    severity: 'Severity'
+    details: 'About you'
+    location: 'Location'
+    overview:
+        title: 'Reports overview'
+        from: 'From'
+        to: 'To'
+        show: 'Show'
+        error:
+            title: 'Error'
+            text: 'Failed to load data.'
+        bar:
+            from: 'From'
+            to: 'To'
+    button:
+        new_report: 'New report'
+        overview: 'Overview'
+        continue_report: 'Continue report'
+        pick_location: 'Pick location'
+        report: 'Report'
+        find_location: 'Find my location'
 
-form:severity: 'Severity'
-form.reporter_name: 'Name'
-form.reporter_surname: 'Surname'
-form.reporter_email: 'Email'
-form.comment: 'Comment'
-form.longitude: 'Longitude'
-form.latitude: 'Latitude'
+severity:
+    none: 'None'
+    barely_noticeable: 'Barely noticeable'
+    weak: 'Weak'
+    annoying: 'Annoying'
+    strongly_annoying: 'Strongly annoying'
+    unbearable: 'Unbearable'
+
+nature:
+    other: 'Other'
+    rotten_fruit: 'Rotten fruit'
+    chemical: 'Chemical'
+    burnt_plastic: 'Burnt plastic'
+
+form:
+    severity: 'Severity'
+    stink_nature: 'Stink nature'
+    reporter_name: 'Name'
+    reporter_surname: 'Surname'
+    reporter_email: 'Email'
+    comment: 'Comment'
+    longitude: 'Longitude'
+    latitude: 'Latitude'
 
 location.denied:
     header: 'Permission denied'
@@ -33,6 +74,7 @@ location.timeout:
     header: 'Location timeout'
     msg: 'Cannot find your location. Tap the map and pick your location manually.'
 
-flash.report_added: 'A report has been added'
-flash.report_failed: 'Failed to add a report'
-flash.you_are_robot: 'You seem to be a robot'
+flash:
+    report_added: 'A report has been added'
+    report_failed: 'Failed to add a report'
+    you_are_robot: 'You seem to be a robot'

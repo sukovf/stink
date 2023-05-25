@@ -2,9 +2,7 @@
 
 namespace App\Data;
 
-use App\Entity\Report;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  *
@@ -14,9 +12,9 @@ class GeoJsonDataProvider extends AbstractDataProvider
 	/**
 	 *
 	 */
-	public function getData(int $limit = -1): Response
+	public function getData(Request $request, int $limit = -1): DataResponse
 	{
-		$reports = $this->entityManager->getRepository(Report::class)->findBy([], ['created' => 'DESC']);
+		$reports = $this->getReports($request, $from, $to, $limit);
 
 		$data = [
 			'type' 		=> 'FeatureCollection',
@@ -45,10 +43,11 @@ class GeoJsonDataProvider extends AbstractDataProvider
 			$data['features'][] = $feature;
 		}
 
-		$response = new JsonResponse();
-		$response->headers->set('Content-Type', 'application/geo+json');
-		$response->setContent(json_encode($data));
-
-		return $response;
+		return new DataResponse(
+			contentType: 'application/geo+json',
+			data: $data,
+			fromDate: strval($from),
+			toDate: strval($to)
+		);
 	}
 }

@@ -1,5 +1,7 @@
 const $ = require('jquery');
-import {LngLat, LngLatLike, Map, MapMouseEvent, Marker} from "mapbox-gl";
+import {GeoJSONSource, LngLat, LngLatLike, Map, MapMouseEvent, Marker} from 'mapbox-gl';
+import jqXHR = JQuery.jqXHR;
+import {Message} from '../Message';
 
 /**
  *
@@ -9,6 +11,9 @@ export class StinkMap
 	mapContainer: HTMLElement;
 	map: Map;
 	marker: Marker;
+	dataErrorTitle: string;
+	dataErrorText: string;
+	dataLoadedCallback: (isInitial: boolean, fromDate: string|null, toDate: string|null) => void|null;
 
 	/**
 	 *
@@ -23,9 +28,59 @@ export class StinkMap
 	/**
 	 *
 	 */
+	public setOnDataLoaded = (callback: (isInitial: boolean, fromDate: string|null, toDate: string|null) => void) => {
+		this.dataLoadedCallback = callback;
+	}
+
+	/**
+	 *
+	 */
 	public setMyMarkerLocation = (coords: LngLatLike) => {
 		this.marker.setLngLat(coords);
 		this.map.panTo(coords);
+	}
+
+	/**
+	 *
+	 */
+	public getHeatmapUrl = (): string => {
+		return this.mapContainer.getAttribute('data-heatmap-data-url');
+	}
+
+	/**
+	 *
+	 */
+	private loadHeatmapData = (isInitial: boolean = false, from: string|null = null, to: string|null = null) => {
+		$('#map-spinner-container').removeClass('d-none');
+
+		$.ajax({
+			url: this.getHeatmapUrl(),
+			method: 'GET',
+			data: {
+				from: from,
+				to: to
+			}
+		}).done((data: any) => {
+			const source: GeoJSONSource = this.map.getSource('reports') as GeoJSONSource;
+			source.setData(data.data);
+
+			if (this.dataLoadedCallback) {
+				this.dataLoadedCallback(isInitial, data.fromDate, data.toDate);
+			}
+		}).always((data: any, textStatus: any, jqXHR: jqXHR) => {
+			if (jqXHR.status !== 200) {
+				Message.show(this.dataErrorTitle, this.dataErrorText);
+			}
+
+			$('#map-spinner-container').addClass('d-none');
+		});
+	}
+
+	/**
+	 *
+	 */
+	public setHeatmapData = (isInitial: boolean = false, from: string|null = null, to: string|null = null) => {
+		this.loadHeatmapData(isInitial, from, to);
 	}
 
 	/**
@@ -44,12 +99,18 @@ export class StinkMap
 		const southernLimit: number = parseFloat(this.mapContainer.getAttribute('data-southern-limit'));
 		this.mapContainer.removeAttribute('data-southern-limit');
 
-		const heatmapDataURL: string = this.mapContainer.getAttribute('data-heatmap-data-url');
+		this.dataErrorTitle = this.mapContainer.getAttribute('data-error-title');
+		this.dataErrorText = this.mapContainer.getAttribute('data-error-text');
 
 		this.map = new Map({
 			accessToken: token,
 			container: this.mapContainer,
 			style: 'mapbox://styles/sukovf/cl5152acy000z15pf1cd2g437',
+			pitchWithRotate: false,
+			touchPitch: false,
+			dragRotate: false,
+			doubleClickZoom: true,
+			minZoom: 10,
 			bounds: [
 				[westernLimit, southernLimit],
 				[easternLimit, northernLimit]
@@ -64,11 +125,65 @@ export class StinkMap
 			$('input[name="form[longitude]"]').val(coords.lng).trigger('change');
 			$('input[name="form[latitude]"]').val(coords.lat).trigger('change');
 		}).on('load', () => {
+			// reports data source
 			this.map.addSource('reports', {
 				type: 'geojson',
-				data: heatmapDataURL
+				data: {
+					type: 'FeatureCollection',
+					features: []
+				}
 			});
 
+			this.setHeatmapData(true);
+
+			// bounds data source
+			this.map.addSource('bounds', {
+				type: 'geojson',
+				data: {
+					type: 'Feature',
+					properties: {},
+					geometry: {
+						type: 'MultiPolygon',
+						coordinates: [
+							[
+								[
+									[-180, -90,],
+									[westernLimit, southernLimit],
+									[easternLimit, southernLimit],
+									[180, -90],
+									[-180, -90]
+								]
+							], [
+								[
+									[-180, 90],
+									[westernLimit, northernLimit],
+									[westernLimit, southernLimit],
+									[-180, -90],
+									[-180, 90]
+								]
+							], [
+								[
+									[-180, 90],
+									[180, 90],
+									[easternLimit, northernLimit],
+									[westernLimit, northernLimit],
+									[-180, 90]
+								]
+							], [
+								[
+									[180, 90],
+									[easternLimit, northernLimit],
+									[easternLimit, southernLimit],
+									[180, -90],
+									[180, 90]
+								]
+							]
+						]
+					}
+				}
+			});
+
+			// reports heatmap layer
 			this.map.addLayer({
 				type: 'heatmap',
 				id: 'reports-heat',
@@ -106,6 +221,19 @@ export class StinkMap
 					'heatmap-opacity': 0.2
 				}
 			});
+
+			// bounds layer
+			this.map.addLayer({
+				id: 'bounds',
+				source: 'bounds',
+				type: 'fill',
+				layout: {},
+				paint: {
+					'fill-color': '#f93154',
+					'fill-opacity': 0.08,
+					'fill-antialias': false
+				}
+			})
 		});
 
 		this.marker.setLngLat([0, 0]).addTo(this.map);

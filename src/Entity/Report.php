@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ReportRepository")
  * @ORM\Table(name="report")
  */
 class Report
@@ -26,6 +26,13 @@ class Report
 	 * @ORM\JoinColumn(name="severity_id", referencedColumnName="id", nullable=false)
 	 */
 	private Severity $severity;
+
+	/**
+	 * @var StinkNature
+	 * @ORM\ManyToOne(targetEntity="StinkNature")
+	 * @ORM\JoinColumn(name="stink_nature_id", referencedColumnName="id", nullable=false)
+	 */
+	private StinkNature $stinkNature;
 
 	/**
 	 * @var string
@@ -111,6 +118,22 @@ class Report
 	public function setSeverity(Severity $severity): void
 	{
 		$this->severity = $severity;
+	}
+
+	/**
+	 * @return StinkNature
+	 */
+	public function getStinkNature(): StinkNature
+	{
+		return $this->stinkNature;
+	}
+
+	/**
+	 * @param StinkNature $stinkNature
+	 */
+	public function setStinkNature(StinkNature $stinkNature): void
+	{
+		$this->stinkNature = $stinkNature;
 	}
 
 	/**
