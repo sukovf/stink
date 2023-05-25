@@ -8,16 +8,10 @@ use App\LiveFormValidation\Rule\Rule;
 use App\LiveFormValidation\Rule\RuleOperations;
 use Symfony\Component\Validator\Constraint;
 
-/**
- *
- */
 class Length implements ConstraintInterface
 {
     /**
-     * @param MessageBuilder $messageBuilder
 	 * @param \Symfony\Component\Validator\Constraints\Length $constraint
-	 *
-	 * @return Rule[]
      */
     public function generateValidationRules(MessageBuilder $messageBuilder, Constraint $constraint): array
     {

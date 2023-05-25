@@ -1,11 +1,8 @@
 import TriggeredEvent = JQuery.TriggeredEvent;
 const $ = require('jquery');
 import {StinkMap} from '../StinkMap';
-import {Message} from "../Message";
+import {Message} from '../Message';
 
-/**
- *
- */
 export class Location
 {
 	map: StinkMap;
@@ -17,9 +14,6 @@ export class Location
 	locationTimeoutHeader: string;
 	locationTimeoutMsg: string;
 
-	/**
-	 *
-	 */
 	constructor(map: StinkMap, reportFormValidator: any) {
 		this.map = map;
 		this.reportFormValidator = reportFormValidator;
@@ -28,9 +22,6 @@ export class Location
 		this.init();
 	}
 
-	/**
-	 *
-	 */
 	private init = () => {
 		$('#button-find-location').on('click', (event: TriggeredEvent) => {
 			const button: JQuery = $(event.currentTarget);
@@ -82,9 +73,6 @@ export class Location
 		});
 	}
 
-	/**
-	 *
-	 */
 	private readMessages = () => {
 		const msgContainer: JQuery = $('#body-location');
 		this.locationDeniedHeader = msgContainer.attr('data-msg-location-denied-header');

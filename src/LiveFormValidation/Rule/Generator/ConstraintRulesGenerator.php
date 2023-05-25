@@ -10,31 +10,19 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-/**
- *
- */
 class ConstraintRulesGenerator
 {
 	const CONSTRAINT_RULE_CLASS_BASE = 'App\\LiveFormValidation\\Constraint\\';
 
-    /** @var MetadataProvider */
     private MetadataProvider $metadataProvider;
-
-    /** @var MessageBuilder */
     private MessageBuilder $messageBuilder;
 
-    /**
-     *
-     */
     public function __construct(MetadataProvider $metadataProvider, MessageBuilder $messageBuilder)
     {
         $this->metadataProvider = $metadataProvider;
         $this->messageBuilder = $messageBuilder;
     }
 
-    /**
-     *
-     */
     public function generateConstraintRules(FormBuilderInterface $builder): void
     {
 		foreach ($builder as $element) {
@@ -50,8 +38,8 @@ class ConstraintRulesGenerator
 
 			// collect all constraints
 			$constraints = array_merge(
-				$this->collectOptionsConstraints($options),
-				$this->collectEntityConstraints($builder, $element->getName()));
+				$this->collectConstraintsFromOptions($options),
+				$this->collectConstraintsFromEntity($builder, $element->getName()));
 
 			$options['constraints'] = $constraints;
 
@@ -71,19 +59,22 @@ class ConstraintRulesGenerator
 	 *
 	 * @return Constraint[]
 	 */
-	private function collectOptionsConstraints(array $options): array
+	private function collectConstraintsFromOptions(array $options): array
 	{
 		/** @var Constraint[] $constraints */
 		$constraints = [];
-		if (is_array($options['constraints'])) {
-			$constraints = $options['constraints'];
 
-			if (count(array_filter($options['constraints'], function($constraint) {
-					return $constraint instanceof NotBlank;
-				})) === 0) {
-				if ($options['required'] === true) {
-					$constraints[] = new NotBlank();
-				}
+		if (!is_array($options['constraints'])) {
+			return $constraints;
+		}
+
+		$constraints = $options['constraints'];
+
+		if (count(array_filter($options['constraints'], function($constraint) {
+			return $constraint instanceof NotBlank;
+		})) === 0) {
+			if ($options['required'] === true) {
+				$constraints[] = new NotBlank();
 			}
 		}
 
@@ -91,12 +82,9 @@ class ConstraintRulesGenerator
 	}
 
 	/**
-	 * @param FormBuilderInterface $builder
-	 * @param string $elementName
-	 *
 	 * @return Constraint[]
 	 */
-	private function collectEntityConstraints(FormBuilderInterface $builder, string $elementName): array
+	private function collectConstraintsFromEntity(FormBuilderInterface $builder, string $elementName): array
 	{
 		/** @var Constraint[] $constraints */
 		$constraints = [];
@@ -109,8 +97,6 @@ class ConstraintRulesGenerator
 
 	/**
 	 * @param Constraint[] $constraints
-	 *
-	 * @return ?string
 	 */
 	private function serializeConstraintRules(array $constraints): ?string
 	{
@@ -118,26 +104,30 @@ class ConstraintRulesGenerator
 		$rules = [];
 
 		foreach ($constraints as $constraint) {
-			$constraintName = [];
-			if (preg_match('/[\w\d]+$/', get_class($constraint), $constraintName) === 1) {
-				if (count($constraintName) === 1) {
-					$constraintName = $constraintName[0];
-					$constraintRuleClass = self::CONSTRAINT_RULE_CLASS_BASE . $constraintName;
+			if (preg_match('/\w+$/', get_class($constraint), $constraintName) !== 1) {
+				continue;
+			}
 
-					if (class_exists($constraintRuleClass) && is_subclass_of($constraintRuleClass, ConstraintInterface::class)) {
-						/** @var ConstraintInterface $constraintRule */
-						$constraintRule = new $constraintRuleClass;
-						$rules = array_merge($rules, $constraintRule->generateValidationRules($this->messageBuilder, $constraint));
-					}
-				}
+			if (count($constraintName) !== 1) {
+				continue;
+			}
+
+			$constraintName = $constraintName[0];
+			$constraintRuleClass = self::CONSTRAINT_RULE_CLASS_BASE . $constraintName;
+
+			if (class_exists($constraintRuleClass) && is_subclass_of($constraintRuleClass, ConstraintInterface::class)) {
+				$constraintRule = new $constraintRuleClass;
+				$rules = array_merge($rules, $constraintRule->generateValidationRules($this->messageBuilder, $constraint));
 			}
 		}
 
-		if (count($rules) > 0) {
-			$rulesStr = json_encode($rules);
-			if ($rulesStr !== false) {
-				return $rulesStr;
-			}
+		if (count($rules) === 0) {
+			return null;
+		}
+
+		$rulesStr = json_encode($rules);
+		if ($rulesStr !== false) {
+			return $rulesStr;
 		}
 
 		return null;

@@ -99,7 +99,7 @@
 					{# /severity select/ #}
 
 					{# report form #}
-					<div class="card-body" id="body-report-form" {% if shouldFirstFormBeVisible %}data-is-visible="true"{% endif %}>
+					<div class="card-body" id="body-report-form" {% if showDetailCard %}data-is-visible="true"{% endif %}>
 						<div class="row text-nowrap flex-nowrap">
 							<div class="col-12">
 								<div class="justify-content-between d-flex">
@@ -122,7 +122,7 @@
 					{# /report form/ #}
 
 					{# location form #}
-					<div class="card-body" id="body-location" {% if shouldSecondFormBeVisible %}data-is-visible="true"{% endif %}
+					<div class="card-body" id="body-location" {% if showLocationCard %}data-is-visible="true"{% endif %}
 						 data-msg-location-denied-header="{{ 'location.denied.header'|trans }}"
 						 data-msg-location-denied-msg="{{ 'location.denied.msg'|trans }}"
 						 data-msg-location-unavailable-header="{{ 'location.unavailable.header'|trans }}"

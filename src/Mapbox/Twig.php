@@ -9,32 +9,21 @@ use Twig\Error\SyntaxError;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-/**
- *
- */
 class Twig extends AbstractExtension
 {
-	/** @var Environment */
 	private Environment $twig;
 
-	/**
-	 *
-	 */
 	public function __construct(Environment $twig)
 	{
 		$this->twig = $twig;
 	}
 
-	/**
-	 *
-	 */
 	public function getFunctions(): array
 	{
 		return [
 			new TwigFunction('mapbox', [$this, 'mapbox'], ['is_safe' => ['html']])
 		];
 	}
-
 
 	/**
 	 * @throws RuntimeError

@@ -2,9 +2,6 @@ const $ = require('jquery');
 import {LiveValidationResult, LiveValidationRule} from './classes';
 import TriggeredEvent = JQuery.TriggeredEvent;
 
-/**
- *
- */
 $.fn.liveValidate = function(): JQuery {
 	return this.each((formIndex: number, form: HTMLElement) => {
 		let result: LiveValidationResult = new LiveValidationResult(form);
@@ -20,7 +17,7 @@ $.fn.liveValidate = function(): JQuery {
 			showErrors(form);
 		});
 
-		$(form).on('submit', (event: any) => {
+		$(form).on('submit', () => {
 			validateElements(form);
 			if (!result.isValid()) {
 				showErrors(form);
@@ -29,9 +26,6 @@ $.fn.liveValidate = function(): JQuery {
 			}
 		});
 
-		/**
-		 *
-		 */
 		const isSpecialKey = (key: number): boolean => {
 			return (key == 20 || /* Caps lock */
 				key == 16 || /* Shift */
@@ -49,9 +43,6 @@ $.fn.liveValidate = function(): JQuery {
 				(key >= 144 && key <= 145)); /* Num Lock, Scroll Lock */
 		}
 
-		/**
-		 *
-		 */
 		const validateElements = (form: HTMLElement, element: HTMLElement | null = null) => {
 			const elements: HTMLElement[] = element === null ? $('input, select', form).toArray() : [element];
 
@@ -86,9 +77,6 @@ $.fn.liveValidate = function(): JQuery {
 			});
 		};
 
-		/**
-		 *
-		 */
 		const showErrors = (form: HTMLElement) => {
 			// remove existing error messages
 			$('input, select', form).removeClass('is-invalid');
@@ -128,9 +116,6 @@ $.fn.liveValidate = function(): JQuery {
 			});
 		};
 
-		/**
-		 *
-		 */
 		const focusFirstInputWithError = (result: LiveValidationResult) => {
 			const input: JQuery | null = result.getFirstInputWithError();
 
@@ -139,8 +124,6 @@ $.fn.liveValidate = function(): JQuery {
 			}
 		};
 
-		/**
-		 */
 		this.validateCustomElements = (elements: JQuery): boolean => {
 			let foundError: boolean = false;
 

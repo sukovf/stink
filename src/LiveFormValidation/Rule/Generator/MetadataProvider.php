@@ -9,17 +9,10 @@ use Doctrine\Persistence\ObjectManager;
 use ReflectionException;
 use Symfony\Component\Validator\Constraint;
 
-/**
- *
- */
 class MetadataProvider
 {
-    /** @var ObjectManager */
     private ObjectManager $entityManager;
 
-    /**
-     *
-     */
     public function __construct(ManagerRegistry $doctrine)
     {
         $this->entityManager = $doctrine->getManager();
@@ -27,7 +20,6 @@ class MetadataProvider
 
     /**
      * @param class-string $class
-     * @param string $propertyName
      *
      * @return Constraint[]
      */
@@ -35,8 +27,9 @@ class MetadataProvider
     {
         $metadata = $this->entityManager->getClassMetadata($class);
         try {
-            $annotations = (new AnnotationReader())
-                ->getPropertyAnnotations($metadata->getReflectionClass()->getProperty($propertyName));
+            $annotations =
+				(new AnnotationReader())
+                	->getPropertyAnnotations($metadata->getReflectionClass()->getProperty($propertyName));
         } catch (ReflectionException $e) {
             throw new PropertyNotFoundException($e);
         }

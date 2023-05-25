@@ -1,9 +1,6 @@
 import * as $ from 'jquery';
 import Timepicker from './../../js/kit/pro/timepicker';
 
-/**
- *
- */
 $(function() {
 	const locale: JQuery = $('#timepicker-locale');
 

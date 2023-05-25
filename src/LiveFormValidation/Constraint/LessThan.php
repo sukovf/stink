@@ -8,13 +8,10 @@ use App\LiveFormValidation\Rule\Rule;
 use App\LiveFormValidation\Rule\RuleOperations;
 use Symfony\Component\Validator\Constraint;
 
-/**
- *
- */
 class LessThan implements ConstraintInterface
 {
 	/**
-	 *
+	 * @param \Symfony\Component\Validator\Constraints\LessThan $constraint
 	 */
 	public function generateValidationRules(MessageBuilder $messageBuilder, Constraint $constraint): array
 	{

@@ -4,27 +4,17 @@ namespace App\LiveFormValidation\Message;
 
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- *
- */
 class MessageBuilder
 {
-    /** @var TranslatorInterface */
     private TranslatorInterface $translator;
 
-    /**
-     *
-     */
     public function __construct(TranslatorInterface $translator)
     {
         $this->translator = $translator;
     }
 
 	/**
-	 * @param string $message
 	 * @param string|array<string>|null $parameters
-	 *
-	 * @return string
 	 */
     public function build(string $message, string|array|null $parameters = null): string
     {

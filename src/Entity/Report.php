@@ -80,171 +80,128 @@ class Report
 	 */
 	private DateTime $created;
 
-	/**
-	 *
-	 */
 	public function __construct()
 	{
 		$this->created = new DateTime();
 	}
 
-	/**
-	 * @return int
-	 */
 	public function getId(): int
 	{
 		return $this->id;
 	}
 
-	/**
-	 * @param int $id
-	 */
-	public function setId(int $id): void
+	public function setId(int $id): self
 	{
 		$this->id = $id;
+
+		return $this;
 	}
 
-	/**
-	 * @return Severity
-	 */
 	public function getSeverity(): Severity
 	{
 		return $this->severity;
 	}
 
-	/**
-	 * @param Severity $severity
-	 */
-	public function setSeverity(Severity $severity): void
+	public function setSeverity(Severity $severity): self
 	{
 		$this->severity = $severity;
+
+		return $this;
 	}
 
-	/**
-	 * @return StinkNature
-	 */
 	public function getStinkNature(): StinkNature
 	{
 		return $this->stinkNature;
 	}
 
-	/**
-	 * @param StinkNature $stinkNature
-	 */
-	public function setStinkNature(StinkNature $stinkNature): void
+	public function setStinkNature(StinkNature $stinkNature): self
 	{
 		$this->stinkNature = $stinkNature;
+
+		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getReporterName(): string
 	{
 		return $this->reporterName;
 	}
 
-	/**
-	 * @param string $reporterName
-	 */
-	public function setReporterName(string $reporterName): void
+	public function setReporterName(string $reporterName): self
 	{
 		$this->reporterName = $reporterName;
+
+		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getReporterSurname(): string
 	{
 		return $this->reporterSurname;
 	}
 
-	/**
-	 * @param string $reporterSurname
-	 */
-	public function setReporterSurname(string $reporterSurname): void
+	public function setReporterSurname(string $reporterSurname): self
 	{
 		$this->reporterSurname = $reporterSurname;
+
+		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getReporterEmail(): string
 	{
 		return $this->reporterEmail;
 	}
 
-	/**
-	 * @param string $reporterEmail
-	 */
-	public function setReporterEmail(string $reporterEmail): void
+	public function setReporterEmail(string $reporterEmail): self
 	{
 		$this->reporterEmail = $reporterEmail;
+
+		return $this;
 	}
 
-	/**
-	 * @return float
-	 */
 	public function getLongitude(): float
 	{
 		return $this->longitude;
 	}
 
-	/**
-	 * @param float $longitude
-	 */
-	public function setLongitude(float $longitude): void
+	public function setLongitude(float $longitude): self
 	{
 		$this->longitude = $longitude;
+
+		return $this;
 	}
 
-	/**
-	 * @return float
-	 */
 	public function getLatitude(): float
 	{
 		return $this->latitude;
 	}
 
-	/**
-	 * @param float $latitude
-	 */
-	public function setLatitude(float $latitude): void
+	public function setLatitude(float $latitude): self
 	{
 		$this->latitude = $latitude;
+
+		return $this;
 	}
 
-	/**
-	 * @return DateTime
-	 */
 	public function getCreated(): DateTime
 	{
 		return $this->created;
 	}
 
-	/**
-	 * @param DateTime $created
-	 */
-	public function setCreated(DateTime $created): void
+	public function setCreated(DateTime $created): self
 	{
 		$this->created = $created;
+
+		return $this;
 	}
 
-	/**
-	 * @return string|null
-	 */
 	public function getComment(): ?string
 	{
 		return $this->comment;
 	}
 
-	/**
-	 * @param string|null $comment
-	 */
-	public function setComment(?string $comment): void
+	public function setComment(?string $comment): self
 	{
 		$this->comment = $comment;
+
+		return $this;
 	}
 }

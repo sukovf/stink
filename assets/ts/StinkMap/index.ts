@@ -3,9 +3,6 @@ import {GeoJSONSource, LngLat, LngLatLike, Map, MapMouseEvent, Marker} from 'map
 import jqXHR = JQuery.jqXHR;
 import {Message} from '../Message';
 
-/**
- *
- */
 export class StinkMap
 {
 	mapContainer: HTMLElement;
@@ -15,9 +12,6 @@ export class StinkMap
 	dataErrorText: string;
 	dataLoadedCallback: (isInitial: boolean, fromDate: string|null, toDate: string|null) => void|null;
 
-	/**
-	 *
-	 */
 	constructor(mapContainer: HTMLElement) {
 		this.mapContainer = mapContainer;
 		this.marker = new Marker();
@@ -25,31 +19,19 @@ export class StinkMap
 		this.init();
 	}
 
-	/**
-	 *
-	 */
 	public setOnDataLoaded = (callback: (isInitial: boolean, fromDate: string|null, toDate: string|null) => void) => {
 		this.dataLoadedCallback = callback;
 	}
 
-	/**
-	 *
-	 */
 	public setMyMarkerLocation = (coords: LngLatLike) => {
 		this.marker.setLngLat(coords);
 		this.map.panTo(coords);
 	}
 
-	/**
-	 *
-	 */
 	public getHeatmapUrl = (): string => {
 		return this.mapContainer.getAttribute('data-heatmap-data-url');
 	}
 
-	/**
-	 *
-	 */
 	private loadHeatmapData = (isInitial: boolean = false, from: string|null = null, to: string|null = null) => {
 		$('#map-spinner-container').removeClass('d-none');
 
@@ -76,16 +58,10 @@ export class StinkMap
 		});
 	}
 
-	/**
-	 *
-	 */
 	public setHeatmapData = (isInitial: boolean = false, from: string|null = null, to: string|null = null) => {
 		this.loadHeatmapData(isInitial, from, to);
 	}
 
-	/**
-	 *
-	 */
 	private init = () => {
 		const token: string = this.mapContainer.getAttribute('data-token');
 		this.mapContainer.removeAttribute('data-token')
