@@ -1,0 +1,9 @@
+parameters:
+    level: 9
+    paths:
+        - src
+    symfony:
+        containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml
+        consoleApplicationLoader: tests/ConsoleLoader.php
+    doctrine:
+        objectManagerLoader: tests/DoctrineOrmBootstrap.php
