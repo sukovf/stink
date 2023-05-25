@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Data\GeoJsonDataProvider;
+use App\Data\Exception\EncodeException;
+use App\Data\GeoJson\GeoJsonDataProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,6 +13,8 @@ class DataController extends AbstractController
 {
 	/**
 	 * @Route("/data.geojson", name="data")
+	 *
+	 * @throws EncodeException
 	 */
 	public function getData(Request $request, GeoJsonDataProvider $provider): Response
 	{
