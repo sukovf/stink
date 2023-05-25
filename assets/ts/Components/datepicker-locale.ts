@@ -1,9 +1,6 @@
 import * as $ from 'jquery';
 import Datepicker from './../../js/kit/pro/datepicker';
 
-/**
- *
- */
 $(function() {
 	const locale: JQuery = $('#datepicker-locale');
 

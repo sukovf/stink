@@ -11,25 +11,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-/**
- *
- */
 abstract class AbstractDataProvider implements DataProviderInterface
 {
-	/** @var EntityManagerInterface */
 	protected EntityManagerInterface $entityManager;
 
-	/**
-	 *
-	 */
 	public function __construct(EntityManagerInterface $entityManager)
 	{
 		$this->entityManager = $entityManager;
 	}
 
-	/**
-	 *
-	 */
 	protected function getReports(Request $request, ?string &$from, ?string &$to, int $limit = -1): array
 	{
 		$from = $request->query->get('from');

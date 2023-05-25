@@ -4,14 +4,8 @@ namespace App\Data;
 
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- *
- */
 class GeoJsonDataProvider extends AbstractDataProvider
 {
-	/**
-	 *
-	 */
 	public function getData(Request $request, int $limit = -1): DataResponse
 	{
 		$reports = $this->getReports($request, $from, $to, $limit);

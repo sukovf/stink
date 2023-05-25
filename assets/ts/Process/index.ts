@@ -1,10 +1,7 @@
+const $ = require('jquery');
 import TriggeredEvent = JQuery.TriggeredEvent;
 import Select from './../../js/kit/pro/select';
-const $ = require('jquery');
 
-/**
- *
- */
 enum Section {
 	Default = 0,
 	Severity = 1,
@@ -12,9 +9,6 @@ enum Section {
 	Location = 3
 }
 
-/**
- *
- */
 export class Process
 {
 	section: Section;
@@ -22,9 +16,6 @@ export class Process
 	reportFormValidator: any;
 	continueReportLabel: string;
 
-	/**
-	 *
-	 */
 	constructor(reportFormValidator: any) {
 		this.section = Section.Default;
 		this.severity = 0;
@@ -34,9 +25,6 @@ export class Process
 		this.readMessages();
 	}
 
-	/**
-	 *
-	 */
 	private init = () => {
 		$('.body-back').on('click', () => {
 			if (this.section === Section.Details) {
@@ -59,14 +47,14 @@ export class Process
 			this.toggleCardBody('#body-location', false);
 		});
 
-		const shouldFirstFormBeVisible: boolean = typeof $('#body-report-form').attr('data-is-visible') !== 'undefined';
-		const shouldSecondFormBeVisible: boolean = typeof $('#body-location').attr('data-is-visible') !== 'undefined';
+		const showDetailCard: boolean = typeof $('#body-report-form').attr('data-is-visible') !== 'undefined';
+		const showLocationCard: boolean = typeof $('#body-location').attr('data-is-visible') !== 'undefined';
 
-		if (!shouldFirstFormBeVisible && !shouldSecondFormBeVisible) {
+		if (!showDetailCard && !showLocationCard) {
 			this.toggleCardBody('#body-default', true, 250);
-		} else if (shouldFirstFormBeVisible) {
+		} else if (showDetailCard) {
 			this.toggleCardBody('#body-report-form', true, 250);
-		} else if (shouldSecondFormBeVisible) {
+		} else if (showLocationCard) {
 			this.toggleCardBody('#body-location', true, 250);
 		}
 
@@ -114,9 +102,6 @@ export class Process
 		});
 	}
 
-	/**
-	 *
-	 */
 	private toggleCardBody(cardID: string, open: boolean, delay: number = 0) {
 		setTimeout(() => {
 			if (open) {
@@ -131,9 +116,6 @@ export class Process
 		}, delay);
 	}
 
-	/**
-	 *
-	 */
 	private readMessages = () => {
 		this.continueReportLabel = $('#body-default').attr('data-continue-report');
 	}

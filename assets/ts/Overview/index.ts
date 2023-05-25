@@ -2,25 +2,16 @@ const $ = require('jquery');
 import TriggeredEvent = JQuery.TriggeredEvent;
 import {StinkMap} from '../StinkMap';
 
-/**
- *
- */
 export class Overview
 {
 	private readonly map: StinkMap;
 
-	/**
-	 *
-	 */
 	constructor(map: StinkMap) {
 		this.map = map;
 
 		this.init();
 	}
 
-	/**
-	 *
-	 */
 	private init = () => {
 		this.map.setOnDataLoaded((isInitial: boolean, fromDate: string|null, toDate: string|null) => {
 			this.updateOverviewBar(isInitial, fromDate, toDate);
@@ -53,9 +44,6 @@ export class Overview
 		});
 	}
 
-	/**
-	 *
-	 */
 	private updateOverviewBar = (isInitial: boolean, fromDate: string, toDate: string) => {
 		const modal: JQuery = $('#reportsDownloadModal');
 		const fromText: string = modal.attr('data-overview-bar-from');

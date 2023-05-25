@@ -5,39 +5,23 @@ namespace App\Data;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- *
- */
 class DataResponse
 {
-	/** @var string */
 	public string $error;
-
-	/** @var int */
 	public int $statusCode = Response::HTTP_OK;
-
-	/** @var string */
 	public string $contentType = 'application/text';
-
-	/** @var array */
 	public array $data;
-
-	/** @var string|null */
 	public ?string $fromDate = null;
-
-	/** @var string|null */
 	public ?string $toDate = null;
 
-	/**
-	 *
-	 */
 	public function __construct(
 		string $error = '',
 		int $statusCode = Response::HTTP_OK,
 		string $contentType = 'application/text',
 		array $data = [],
 		?string $fromDate = null,
-		?string $toDate = null)
+		?string $toDate = null
+	)
 	{
 		$this->error = $error;
 		$this->statusCode = $statusCode;
@@ -47,9 +31,6 @@ class DataResponse
 		$this->toDate = $toDate;
 	}
 
-	/**
-	 *
-	 */
 	public function makeResponse(): Response
 	{
 		if (empty($this->error) && $this->statusCode === Response::HTTP_OK) {

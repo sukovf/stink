@@ -14,30 +14,21 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Validator\Constraints\Range;
 
-/**
- *
- */
 class ReportFormFactory
 {
-	/** @var ConstraintRulesGenerator */
 	private ConstraintRulesGenerator $constraintRulesGenerator;
-
-	/** @var float */
 	private float $westernLimit;
-
-	/** @var float */
 	private float $northernLimit;
-
-	/** @var float */
 	private float $easternLimit;
-
-	/** @var float */
 	private float $southernLimit;
 
-	/**
-	 *
-	 */
-	public function __construct(ConstraintRulesGenerator $constraintRulesGenerator, float $westernLimit, float $northernLimit, float $easternLimit, float $southernLimit)
+	public function __construct(
+		ConstraintRulesGenerator $constraintRulesGenerator,
+		float $westernLimit,
+		float $northernLimit,
+		float $easternLimit,
+		float $southernLimit
+	)
 	{
 		$this->constraintRulesGenerator = $constraintRulesGenerator;
 		$this->westernLimit = $westernLimit;
@@ -46,9 +37,6 @@ class ReportFormFactory
 		$this->southernLimit = $southernLimit;
 	}
 
-	/**
-	 *
-	 */
 	public function create(FormBuilderInterface $builder): FormInterface
 	{
 		$builder

@@ -2,9 +2,6 @@
 
 namespace App\LiveFormValidation\Rule;
 
-/**
- *
- */
 enum RuleOperations: string
 {
     case NONE = 'NONE';

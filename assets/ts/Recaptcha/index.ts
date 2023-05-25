@@ -1,8 +1,5 @@
 import * as $ from 'jquery';
 
-/**
- *
- */
 window.onGoogleReCaptchaApiLoad = () => {
 	$.each($('[data-toggle="recaptcha"]'), (rcIndex: number, element: HTMLElement) => {
 		const form: JQuery = $(element).closest('form');

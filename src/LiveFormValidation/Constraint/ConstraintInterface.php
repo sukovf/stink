@@ -6,9 +6,6 @@ use App\LiveFormValidation\Message\MessageBuilder;
 use App\LiveFormValidation\Rule\Rule;
 use Symfony\Component\Validator\Constraint;
 
-/**
- *
- */
 interface ConstraintInterface
 {
     /**

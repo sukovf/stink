@@ -1,17 +1,11 @@
 import $ = require('jquery');
 
-/**
- *
- */
 export class LiveValidationRule
 {
 	op: string;
 	args: string|string[]|number;
 	msg: string;
 
-	/**
-	 *
-	 */
 	constructor(op: string = '', args: string|string[]|number = '', msg: string = '')
 	{
 		this.op = op;
@@ -20,26 +14,17 @@ export class LiveValidationRule
 	}
 }
 
-/**
- *
- */
 export class LiveValidationResult
 {
 	form: HTMLElement;
 	errors: {[key: string]: string[]}
 
-	/**
-	 *
-	 */
 	constructor(form: HTMLElement)
 	{
 		this.form = form;
 		this.errors = {};
 	}
 
-	/**
-	 *
-	 */
 	addError(inputName: string, message: string)
 	{
 		if (typeof this.errors[inputName] === 'undefined') {
@@ -49,33 +34,21 @@ export class LiveValidationResult
 		}
 	}
 
-	/**
-	 *
-	 */
 	clearInputErrors(inputName: string)
 	{
 		delete this.errors[inputName];
 	}
 
-	/**
-	 *
-	 */
 	getErrors(): {[key: string]: string[]}
 	{
 		return this.errors;
 	}
 
-	/**
-	 *
-	 */
 	isValid(): boolean
 	{
 		return !Object.keys(this.errors).length;
 	}
 
-	/**
-	 *
-	 */
 	getFirstInputWithError(): JQuery|null
 	{
 		if (this.isValid()) {

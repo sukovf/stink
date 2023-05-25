@@ -7,14 +7,8 @@ use Symfony\Component\Form\FormView;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-/**
- *
- */
 class LiveValidationTwigExtension extends AbstractExtension
 {
-	/**
-	 *
-	 */
 	public function getFunctions(): array
 	{
 		return [
@@ -22,11 +16,6 @@ class LiveValidationTwigExtension extends AbstractExtension
 		];
 	}
 
-	/**
-	 * @param FormView $formView
-	 *
-	 * @return bool
-	 */
 	public function isInputRequired(FormView $formView): bool
 	{
 		if (!isset($formView->vars['attr']['data-validation-rules'])) {
