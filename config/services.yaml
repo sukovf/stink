@@ -35,3 +35,5 @@ services:
             $northernLimit: '%env(MAP_NORTHERN_LIMIT)%'
             $easternLimit: '%env(MAP_EASTERN_LIMIT)%'
             $southernLimit: '%env(MAP_SOUTHERN_LIMIT)%'
+
+    App\Data\GeoJson\GeoJsonDataProvider:

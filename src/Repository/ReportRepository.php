@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Report;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -22,16 +23,33 @@ class ReportRepository extends ServiceEntityRepository
 
 	public function getLatestReport(): ?Report
 	{
-		$data = $this->createQueryBuilder('r')
-			->orderBy('r.created', 'DESC')
-			->setMaxResults(1)
-			->getQuery()
-			->getResult();
+		return $this->findOneBy([], ['created' => 'DESC']);
+	}
 
-		if (!is_array($data) || count($data) !== 1) {
-			return null;
+	/**
+	 * @return Report[] array
+	 */
+	public function getInRange(?DateTime $fromDate, ?DateTime $toDate, int $limit = -1): array
+	{
+		$qb = $this->createQueryBuilder('r')
+			->orderBy('r.created', 'DESC');
+
+		if ($fromDate) {
+			$qb
+				->andWhere('r.created >= :fromDate')
+				->setParameter('fromDate', $fromDate);
 		}
 
-		return $data[0];
+		if ($toDate) {
+			$qb
+				->andWhere('r.created <= :toDate')
+				->setParameter('toDate', $toDate);
+		}
+
+		if ($limit >= 0) {
+			$qb->setMaxResults($limit);
+		}
+
+		return $qb->getQuery()->getResult();
 	}
 }
